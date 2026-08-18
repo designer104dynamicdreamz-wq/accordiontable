@@ -1,0 +1,500 @@
+/* Hero Banner Section Styles */
+
+.hero-banner {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  z-index: auto;
+  isolation: isolate;
+  width: 100%;
+}
+
+.hero-banner::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-banner__media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.hero-banner__media.placeholder {
+  background: linear-gradient(135deg, #f3f3f3 0%, #e9e9e9 100%);
+}
+
+.hero-banner__media.animate--zoom-in {
+  clip-path: inset(0px);
+}
+
+.hero-banner__media.animate--zoom-in > img:not(.zoom):not(.deferred-media__poster-button),
+.hero-banner__media.animate--zoom-in > svg:not(.zoom):not(.deferred-media__poster-button) {
+  position: fixed;
+  height: 100vh;
+}
+
+.hero-banner__media-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-banner__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.hero-banner__box {
+  text-align: center;
+  padding: 3rem;
+  max-width: 55rem;
+  width: 100%;
+}
+
+/* Needed for gradient continuity with or without animation */
+.hero-banner__box.gradient {
+  transform: perspective(0);
+}
+
+.hero-banner__heading {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  word-break: break-word;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.hero-banner__heading.h0 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.hero-banner__heading.h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.hero-banner__heading.h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.hero-banner__subheading {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.hero-banner__subheading.heading-xs {
+  font-size: 1.25rem;
+}
+
+.hero-banner__subheading.body {
+  font-size: 1rem;
+}
+
+.hero-banner__subheading.caption-large {
+  font-size: 0.875rem;
+}
+
+.hero-banner__text {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.hero-banner__text.subtitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.hero-banner__text.caption {
+  font-size: 0.875rem;
+}
+
+.hero-banner__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.hero-banner__buttons--multiple {
+  gap: 1rem;
+}
+
+.hero-banner__buttons .button {
+  padding: 0.875rem 2rem;
+  border-radius: 0.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-banner__buttons .button--primary {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.hero-banner__buttons .button--primary:hover {
+  background-color: #333;
+  border-color: #333;
+  transform: translateY(-2px);
+}
+
+.hero-banner__buttons .button--secondary {
+  background-color: transparent;
+  color: #000;
+  border-color: #000;
+}
+
+.hero-banner__buttons .button--secondary:hover {
+  background-color: #000;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Content Alignment - Desktop */
+@media screen and (min-width: 750px) {
+  .hero-banner {
+    flex-direction: row;
+  }
+
+  .hero-banner--small:not(.hero-banner--adapt) {
+    min-height: 42rem;
+  }
+
+  .hero-banner--medium:not(.hero-banner--adapt) {
+    min-height: 56rem;
+  }
+
+  .hero-banner--large:not(.hero-banner--adapt) {
+    min-height: 72rem;
+  }
+
+  .hero-banner__content.hero-banner__content--top-left {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 3rem;
+    padding-left: 3rem;
+  }
+
+  .hero-banner__content.hero-banner__content--top-center {
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 3rem;
+  }
+
+  .hero-banner__content.hero-banner__content--top-right {
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-top: 3rem;
+    padding-right: 3rem;
+  }
+
+  .hero-banner__content.hero-banner__content--middle-left {
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 3rem;
+  }
+
+  .hero-banner__content.hero-banner__content--middle-center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-banner__content.hero-banner__content--middle-right {
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 3rem;
+  }
+
+  .hero-banner__content.hero-banner__content--bottom-left {
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+  }
+
+  .hero-banner__content.hero-banner__content--bottom-center {
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 3rem;
+  }
+
+  .hero-banner__content.hero-banner__content--bottom-right {
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-bottom: 3rem;
+    padding-right: 3rem;
+  }
+
+  .hero-banner--content-align-left .hero-banner__box {
+    text-align: left;
+  }
+
+  .hero-banner--content-align-right .hero-banner__box {
+    text-align: right;
+  }
+
+  .hero-banner--content-align-center .hero-banner__box {
+    text-align: center;
+  }
+
+  .hero-banner--desktop-transparent .hero-banner__box {
+    background-color: transparent;
+    max-width: 68rem;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 749px) {
+  .hero-banner__media {
+    width: 100%;
+  }
+
+  .hero-banner--small:not(.hero-banner--adapt) .hero-banner__media,
+  .hero-banner--small:not(.hero-banner--adapt):not(.hero-banner--mobile-bottom) .hero-banner__content {
+    height: 28rem;
+  }
+
+  .hero-banner--medium:not(.hero-banner--adapt) .hero-banner__media,
+  .hero-banner--medium:not(.hero-banner--adapt):not(.hero-banner--mobile-bottom) .hero-banner__content {
+    height: 34rem;
+  }
+
+  .hero-banner--large:not(.hero-banner--adapt) .hero-banner__media,
+  .hero-banner--large:not(.hero-banner--adapt):not(.hero-banner--mobile-bottom) .hero-banner__content {
+    height: 39rem;
+  }
+
+  .hero-banner__content {
+    position: absolute;
+  }
+
+  .hero-banner--mobile-bottom {
+    flex-direction: column;
+  }
+
+  .hero-banner--mobile-bottom .hero-banner__media {
+    width: 100%;
+    min-height: 300px;
+  }
+
+  .hero-banner--mobile-bottom .hero-banner__content {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    padding: 2rem 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-banner__box {
+    padding: 2rem 1rem;
+  }
+
+  .hero-banner__heading {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-banner__heading.h0 {
+    font-size: 2rem;
+  }
+
+  .hero-banner__heading.h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-banner__heading.h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-banner__subheading {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-banner__text {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-banner__buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-banner__buttons .button {
+    width: 100%;
+  }
+
+  .hero-banner--content-align-mobile-left .hero-banner__box {
+    text-align: left;
+  }
+
+  .hero-banner--content-align-mobile-right .hero-banner__box {
+    text-align: right;
+  }
+
+  .hero-banner--content-align-mobile-center .hero-banner__box {
+    text-align: center;
+  }
+}
+
+/* Image Height Variants */
+.hero-banner--small:not(.hero-banner--adapt) .hero-banner__media {
+  height: 28rem;
+}
+
+.hero-banner--medium:not(.hero-banner--adapt) .hero-banner__media {
+  height: 34rem;
+}
+
+.hero-banner--large:not(.hero-banner--adapt) .hero-banner__media {
+  height: 39rem;
+}
+
+/* Adapt to Image Height */
+.hero-banner--adapt {
+  min-height: auto;
+}
+
+.hero-banner--adapt .hero-banner__content {
+  position: absolute;
+  height: 100%;
+}
+
+/* Image Behavior Animations */
+.hero-banner__media.animate--ambient > img,
+.hero-banner__media.animate--ambient > svg {
+  will-change: transform;
+}
+
+.hero-banner__media.animate--fixed > img,
+.hero-banner__media.animate--fixed > svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.hero-banner__media.animate--zoom-in > img,
+.hero-banner__media.animate--zoom-in > svg {
+  transform-origin: center;
+}
+
+/* Color Scheme Support */
+.hero-banner__box.color-scheme-1 {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000;
+}
+
+.hero-banner__box.color-scheme-2 {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+.hero-banner__box.color-scheme-3 {
+  background-color: transparent;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Padding */
+@media screen and (max-width: 749px) {
+  .hero-banner__box {
+    padding: 1.5rem;
+  }
+
+  .hero-banner__content {
+    padding: 0 !important;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 1199px) {
+  .hero-banner__box {
+    padding: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero-banner__box {
+    padding: 3rem;
+  }
+}
+
+/* Accessibility */
+.hero-banner__buttons .button:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.hero-banner__box.color-scheme-2 .button:focus-visible,
+.hero-banner__box.color-scheme-3 .button:focus-visible {
+  outline: 2px solid #fff;
+}
+
+/* Loading State */
+.hero-banner__media.media.placeholder svg {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+/* Scroll Trigger Animations */
+@supports (animation: fade-in 0.6s ease-in-out forwards) {
+  .hero-banner.scroll-trigger.animate--fade-in {
+    opacity: 0;
+    animation: fade-in 0.6s ease-in-out forwards;
+  }
+
+  .hero-banner__content.scroll-trigger.animate--slide-in {
+    transform: translateY(30px);
+    opacity: 0;
+    animation: slide-in 0.6s ease-in-out 0.2s forwards;
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
