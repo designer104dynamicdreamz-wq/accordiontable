@@ -341,7 +341,7 @@ body.template-index .hbn__header--scrolled .hbn__logo img {
   font-weight: 400;
   font-size: 18px;
   line-height: 28px;
-  color: var(--hbn-text-color, #ffffff);
+  color: var(--hbn-subheading-color, var(--hbn-text-color, #ffffff));
 }
 
 .hbn__subheading p {
