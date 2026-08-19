@@ -27,7 +27,11 @@
     --hbn-overlay-mid: {{ overlay_mid }};
     --hbn-overlay-end: {{ overlay_end }};
   ">
-  {%- if s.background_image != blank -%}
+  {%- if s.background_video != blank -%}
+    <div class="hbn__media hbn__media--desktop">
+      {{ s.background_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+    </div>
+  {%- elsif s.background_image != blank -%}
     <div class="hbn__media hbn__media--desktop">
       {{ s.background_image | image_url: width: 2400 | image_tag:
         loading: 'eager',
@@ -215,6 +219,12 @@
     {
       "type": "header",
       "content": "Background"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Background video (desktop)",
+      "info": "Optional. Replaces the desktop background image when selected."
     },
     {
       "type": "image_picker",

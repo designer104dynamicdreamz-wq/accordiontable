@@ -51,6 +51,7 @@
       ],
       "name": "Hero Banner + Nav",
       "settings": {
+        "background_video": "shopify://files/videos/0ceec46bef444d23adc5da9e7c576b14.mp4",
         "background_image": "shopify://shop_images/0ceec46bef444d23adc5da9e7c576b14_1.png",
         "overlay_color": "#000000",
         "section_height": 700,
@@ -64,8 +65,8 @@
         "heading": "The table that grows with",
         "heading_accent": "every gathering.",
         "subheading": "<p>Beautifully crafted expandable furniture designed to adapt effortlessly from everyday dining to unforgettable celebrations.</p>",
-        "text_color": "#ffffff",
-        "accent_color": "#c79b6b",
+        "text_color": "#F8F4EE",
+        "accent_color": "#C79B6B",
         "dark_color": "#14110e"
       }
     },
