@@ -2346,6 +2346,64 @@ input[type='checkbox'] {
   transition: top 0.15s ease-out;
 }
 
+/* Homepage uses Dawn's default header over the hero. */
+body.template-index .section-header {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  transition: top 0.3s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.template-index .section-header.scrolled-past-header {
+  top: 0;
+}
+
+body.template-index .section-header:not(.scrolled-past-header) .header-wrapper {
+  background-color: transparent;
+  color: #ffffff;
+  --color-background: 20, 17, 14;
+  --color-foreground: 255, 255, 255;
+}
+
+body.template-index .section-header.scrolled-past-header .header-wrapper {
+  background-color: #f6f3ee;
+  color: #14110e;
+  box-shadow: 0 1px 0 rgba(20, 17, 14, 0.1);
+  --color-background: 246, 243, 238;
+  --color-foreground: 20, 17, 14;
+}
+
+body.template-index .section-header:not(.scrolled-past-header) .header__heading-logo {
+  filter: brightness(0) invert(1);
+}
+
+body.template-index .section-header.scrolled-past-header .header__heading-logo {
+  filter: brightness(0) saturate(100%);
+}
+
+@media screen and (min-width: 990px) {
+  body.template-index .header--middle-left {
+    grid-template-areas: 'heading navigation icons';
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: 2rem;
+  }
+
+  body.template-index .header--middle-left .header__heading-link {
+    justify-self: start;
+  }
+
+  body.template-index .header--middle-left .header__inline-menu {
+    justify-self: center;
+    margin-top: 0;
+  }
+
+  body.template-index .header--middle-left .header__icons {
+    justify-self: end;
+  }
+}
+
 .shopify-section-group-header-group {
   z-index: 4;
 }
@@ -2561,14 +2619,13 @@ input[type='checkbox'] {
 }
 
 .header__icon .icon {
-  height: 2rem;
-  width: 2rem;
+  height: 1.9rem;
+  width: auto;
   fill: none;
   vertical-align: middle;
 }
 
-.header__icon,
-.header__icon--cart .icon {
+.header__icon {
   height: 4.4rem;
   width: 4.4rem;
   padding: 0;

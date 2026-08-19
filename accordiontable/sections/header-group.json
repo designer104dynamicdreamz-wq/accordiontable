@@ -11,6 +11,55 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "custom_announcement_bar_WjL8Wn": {
+      "type": "custom-announcement-bar",
+      "blocks": {
+        "item_Y6M4yq": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "text": "Free White Glove Delivery",
+            "link": ""
+          }
+        },
+        "item_BbXf4P": {
+          "type": "item",
+          "settings": {
+            "icon": "home",
+            "text": "30-Day Home Trial",
+            "link": ""
+          }
+        },
+        "item_xk3mjK": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "text": "Warm Welcome Gift Included",
+            "link": ""
+          }
+        },
+        "item_EFNtee": {
+          "type": "item",
+          "settings": {
+            "icon": "concierge",
+            "text": "Trade / B2B Program",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_Y6M4yq",
+        "item_BbXf4P",
+        "item_xk3mjK",
+        "item_EFNtee"
+      ],
+      "name": "Announcement Bar",
+      "settings": {
+        "background_color": "#14110e",
+        "text_color": "#f6f3ee",
+        "icon_color": "#c79b6b"
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -25,6 +74,7 @@
       "block_order": [
         "announcement-bar-0"
       ],
+      "disabled": true,
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
@@ -39,15 +89,15 @@
       "type": "header",
       "settings": {
         "logo_position": "middle-left",
-        "mobile_logo_position": "center",
+        "mobile_logo_position": "left",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
+        "show_line_separator": false,
         "color_scheme": "scheme-1",
         "menu_color_scheme": "scheme-1",
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
         "margin_bottom": 0,
         "padding_top": 20,
         "padding_bottom": 20
@@ -55,6 +105,7 @@
     }
   },
   "order": [
+    "custom_announcement_bar_WjL8Wn",
     "announcement-bar",
     "header"
   ]
