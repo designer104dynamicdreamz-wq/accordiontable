@@ -181,7 +181,7 @@
         "text_alignment": "left",
         "title_font": "sans",
         "icon_shape": "plain",
-        "icon_size": 46,
+        "icon_size": 45,
         "icon_container_size": 56,
         "border_radius": 0,
         "background_color": "#f6f3ee",

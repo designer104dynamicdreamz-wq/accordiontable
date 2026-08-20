@@ -110,13 +110,15 @@
   }
 
   .footer-home-cta__description {
-    margin: 18px 0 36px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--fhc-desc-color);
+    margin: 15px 0 36px;
+    color: rgba(20, 17, 14, 0.8);
     max-width: 680px;
+    font-family: DM Sans;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0;
+    text-align: center;
   }
 
   /* Buttons Row */
@@ -138,21 +140,24 @@
     gap: 8px;
     height: 48px;
     padding: 12px 20px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.25s ease;
     border-radius: 0;
     white-space: nowrap;
+    font-family: DM Sans;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
   }
 
   .footer-home-cta__btn svg {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     display: block;
     stroke-width: 2;
     transition: transform 0.25s ease;
@@ -205,10 +210,12 @@
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13.5px;
+    color: rgba(20, 17, 14, 0.8);
+    font-family: Mona Sans;
     font-weight: 400;
-    color: var(--fhc-desc-color);
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0%;
   }
 
   .footer-home-cta__mini-icon {
@@ -227,10 +234,10 @@
   }
 
   .footer-home-cta__mini-icon img {
-    width: 19px;
-    height: 19px;
-    object-fit: contain;
+    width: 100%;
+    height: auto;
     display: block;
+    max-width: 20px;
   }
 
   .footer-home-cta__mini-divider {
@@ -463,10 +470,10 @@
               class="footer-home-cta__btn footer-home-cta__btn--primary"
             >
               <span>{{ s.primary_button_text }}</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.90802 0C1.73382 0 1.56675 0.0692001 1.44358 0.192377C1.3204 0.315554 1.2512 0.482618 1.2512 0.656817C1.2512 0.831016 1.3204 0.998079 1.44358 1.12126C1.56675 1.24443 1.73382 1.31363 1.90802 1.31363H7.75807L0.20905 8.86265C0.144519 8.92278 0.0927596 8.99529 0.0568606 9.07586C0.0209617 9.15643 0.00165825 9.2434 0.000102218 9.3316C-0.00145381 9.41979 0.0147695 9.50739 0.0478039 9.58917C0.0808383 9.67096 0.130007 9.74525 0.192377 9.80762C0.254748 9.86999 0.329041 9.91916 0.410827 9.9522C0.492612 9.98523 0.580213 10.0015 0.668404 9.9999C0.756595 9.99834 0.843569 9.97904 0.924138 9.94314C1.00471 9.90724 1.07722 9.85548 1.13735 9.79095L8.68637 2.24193V8.09198C8.68637 8.26618 8.75557 8.43325 8.87874 8.55642C9.00192 8.6796 9.16898 8.7488 9.34318 8.7488C9.51738 8.7488 9.68444 8.6796 9.80762 8.55642C9.9308 8.43325 10 8.26618 10 8.09198V0.656817C9.99844 0.569628 9.98062 0.483496 9.94745 0.402848C9.89979 0.290876 9.82233 0.194116 9.72352 0.12309C9.6247 0.0520642 9.5083 0.00949123 9.38697 0H1.90802Z" fill="currentColor"/>
+          </svg>
+
             </a>
           {%- endif -%}
 
@@ -476,10 +483,10 @@
               class="footer-home-cta__btn footer-home-cta__btn--secondary"
             >
               <span>{{ s.secondary_button_text }}</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.90802 0C1.73382 0 1.56675 0.0692001 1.44358 0.192377C1.3204 0.315554 1.2512 0.482618 1.2512 0.656817C1.2512 0.831016 1.3204 0.998079 1.44358 1.12126C1.56675 1.24443 1.73382 1.31363 1.90802 1.31363H7.75807L0.20905 8.86265C0.144519 8.92278 0.0927596 8.99529 0.0568606 9.07586C0.0209617 9.15643 0.00165825 9.2434 0.000102218 9.3316C-0.00145381 9.41979 0.0147695 9.50739 0.0478039 9.58917C0.0808383 9.67096 0.130007 9.74525 0.192377 9.80762C0.254748 9.86999 0.329041 9.91916 0.410827 9.9522C0.492612 9.98523 0.580213 10.0015 0.668404 9.9999C0.756595 9.99834 0.843569 9.97904 0.924138 9.94314C1.00471 9.90724 1.07722 9.85548 1.13735 9.79095L8.68637 2.24193V8.09198C8.68637 8.26618 8.75557 8.43325 8.87874 8.55642C9.00192 8.6796 9.16898 8.7488 9.34318 8.7488C9.51738 8.7488 9.68444 8.6796 9.80762 8.55642C9.9308 8.43325 10 8.26618 10 8.09198V0.656817C9.99844 0.569628 9.98062 0.483496 9.94745 0.402848C9.89979 0.290876 9.82233 0.194116 9.72352 0.12309C9.6247 0.0520642 9.5083 0.00949123 9.38697 0H1.90802Z" fill="currentColor"/>
+            </svg>
+
             </a>
           {%- endif -%}
         </div>

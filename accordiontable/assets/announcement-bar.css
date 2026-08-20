@@ -67,12 +67,15 @@
 }
 
 .anb__text {
-  font-family: 'Mona Sans', sans-serif;
+  white-space: nowrap;
+  color: var(--anb-text, #f6f3ee);
+  font-family: Mona Sans;
   font-weight: 400;
   font-size: 13px;
   line-height: 14px;
-  white-space: nowrap;
-  color: var(--anb-text, #f6f3ee);
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .anb__divider {

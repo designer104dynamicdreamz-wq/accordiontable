@@ -18,6 +18,7 @@
           "type": "mini_benefit",
           "settings": {
             "icon": "truck",
+            "custom_icon": "shopify://shop_images/Frame_5.svg",
             "custom_svg": "",
             "text": "Free White Glove Delivery",
             "show_divider": true
@@ -27,6 +28,7 @@
           "type": "mini_benefit",
           "settings": {
             "icon": "return",
+            "custom_icon": "shopify://shop_images/noun-return-5880425_1.svg",
             "custom_svg": "",
             "text": "30-day return",
             "show_divider": true
@@ -36,6 +38,7 @@
           "type": "mini_benefit",
           "settings": {
             "icon": "shield",
+            "custom_icon": "shopify://shop_images/noun-shield-3204470_1_2.svg",
             "custom_svg": "",
             "text": "10-year warranty",
             "show_divider": false
@@ -89,7 +92,7 @@
       ],
       "name": "Footer Home CTA",
       "settings": {
-        "background_image": "shopify://shop_images/image_29560.png",
+        "background_image": "shopify://shop_images/04c58820fec57e5f8c5722ca0e33a5d2ab40c8b4_1.png",
         "overlay_color": "#f6f3ee",
         "overlay_opacity": 40,
         "heading_primary": "Ready to see it",
@@ -106,7 +109,7 @@
         "secondary_button_url": "",
         "secondary_button_bg": "#ffffff",
         "secondary_button_text_color": "#14110e",
-        "secondary_button_border_color": "#14110e",
+        "secondary_button_border_color": "#000E1E",
         "enable_dark_bar": true,
         "dark_bar_bg": "#261e18",
         "dark_bar_text_color": "#ffffff",

@@ -296,14 +296,14 @@ body.template-index .hbn__header--scrolled .hbn__logo img {
 }
 
 .hbn__badge {
-  font-family: 'DM Sans', sans-serif;
+  color: var(--hbn-text-color, #f6f3ee);
+  white-space: nowrap;
+  font-family: DM Sans;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--hbn-text-color, #f6f3ee);
-  white-space: nowrap;
 }
 
 .hbn__badge-dot {
