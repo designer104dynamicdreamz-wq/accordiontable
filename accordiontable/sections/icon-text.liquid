@@ -1,0 +1,610 @@
+{{ 'section-icon-text.css' | asset_url | stylesheet_tag }}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=DM+Sans:wght@400;500;600&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+{%- liquid
+  assign section_id = section.id
+  assign s = section.settings
+
+  assign section_layout = s.section_layout | default: 'grid'
+  assign desktop_cols = s.columns_desktop
+  assign tablet_cols = s.columns_tablet | default: '2'
+  assign mobile_layout = s.mobile_layout
+  assign card_style = s.card_style
+  assign icon_position = s.icon_position
+  assign icon_shape = s.icon_shape
+  assign text_alignment = s.text_alignment
+  assign title_font = s.title_font
+-%}
+
+<section
+  class="itx itx--{{ section_id }} section-{{ section_id }}-padding"
+  data-section-id="{{ section_id }}"
+  data-section-type="icon-text"
+  style="
+    --itx-bg: {{ s.background_color }};
+    --itx-text: {{ s.text_color }};
+    --itx-subtext: {{ s.subtext_color }};
+    --itx-accent: {{ s.accent_color }};
+    --itx-dark: {{ s.dark_color }};
+    --itx-card-bg: {{ s.card_background_color }};
+    --itx-border-color: {{ s.border_color }};
+    --itx-icon-bg: {{ s.icon_bg_color }};
+    --itx-icon-size: {{ s.icon_size }}px;
+    --itx-icon-container-size: {{ s.icon_container_size }}px;
+    --itx-gap-desktop: {{ s.column_gap_desktop }}px;
+    --itx-gap-mobile: {{ s.column_gap_mobile }}px;
+    --itx-border-radius: {{ s.border_radius }}px;
+    padding-top: {{ s.padding_top }}px;
+    padding-bottom: {{ s.padding_bottom }}px;
+  "
+>
+  <div class="page-width">
+    <div class="itx__container itx__container--{{ section_layout }}">
+      {%- if s.heading != blank or s.subheading != blank or s.badge_text != blank -%}
+        <div class="itx__header itx__header--{{ s.header_alignment }}">
+          {%- if s.badge_text != blank -%}
+            <div class="itx__badge">
+              <span class="itx__badge-dot" aria-hidden="true"></span>
+              <span>{{ s.badge_text }}</span>
+            </div>
+          {%- endif -%}
+
+          {%- if s.heading != blank or s.heading_accent != blank -%}
+            <h2 class="itx__heading">
+              {%- if s.heading != blank -%}<span>{{ s.heading }} </span>{%- endif -%}
+              {%- if s.heading_accent != blank -%}<span class="itx__heading-accent">{{ s.heading_accent }}</span>{%- endif -%}
+            </h2>
+          {%- endif -%}
+
+          {%- if s.subheading != blank -%}
+            <div class="itx__subheading">
+              {{ s.subheading }}
+            </div>
+          {%- endif -%}
+
+          {%- if s.button_label != blank and s.button_link != blank -%}
+            <div class="itx__header-action">
+              <a
+                href="{{ s.button_link }}"
+                class="itx__btn itx__btn--primary"
+                {% if s.button_open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+              >
+                <span>{{ s.button_label }}</span>
+                <svg class="itx__btn-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M1.5 8.5L8.5 1.5M8.5 1.5H3M8.5 1.5V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="itx__grid itx__grid--{{ desktop_cols }}-col itx__grid--tablet-{{ tablet_cols }}-col itx__grid--mobile-{{ mobile_layout }}">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign b = block.settings
+            assign icon = b.icon
+            assign has_link = false
+            if b.link != blank
+              assign has_link = true
+            endif
+          -%}
+
+          <div
+            class="itx__item itx__item--icon-{{ icon_position }} itx__item--{{ card_style }} itx__item--align-{{ text_alignment }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if b.custom_icon != blank or icon != 'none' or b.custom_svg != blank -%}
+              <div class="itx__icon-wrap itx__icon-wrap--{{ icon_shape }}">
+                {%- if b.custom_icon != blank -%}
+                  {{ b.custom_icon | image_url: width: 80 | image_tag: loading: 'lazy', alt: b.title | default: '' }}
+                {%- elsif b.custom_svg != blank -%}
+                  {{ b.custom_svg }}
+                {%- elsif icon == 'table' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 10h24M7 10v14M25 10v14M11 10v11M21 10v11M3 8h26a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- elsif icon == 'oak' or icon == 'leaf' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 25c7-1 18-3 18-18-7 0-17 9-18 18Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7 25c4-4 8-9 12-13M13 19l4 2M16 14l3 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                {%- elsif icon == 'truck' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 8h16v13H3V8ZM19 13h5.5l3.5 3.5V21h-9v-8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                    <circle cx="8" cy="24" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+                    <circle cx="23" cy="24" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+                  </svg>
+                {%- elsif icon == 'tools' or icon == 'craft' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m14 18-8 8a2.12 2.12 0 1 1-3-3l8-8M17 11l4-4 7 7-4 4M21 7l4 4M10 22l-2-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 8 8 12l2 2 4-4-2-2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                  </svg>
+                {%- elsif icon == 'shield' or icon == 'warranty' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 4 6 8v8c0 7 4.5 11.5 10 12 5.5-.5 10-5 10-12V8L16 4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                    <path d="m12 16 3 3 6-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- elsif icon == 'box' or icon == 'package' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 4 4 10l12 6 12-6-12-6ZM4 10v12l12 6V16M28 10v12l-12 6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                  </svg>
+                {%- elsif icon == 'ruler' or icon == 'dimension' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 27 27 5l-2-2L3 25l2 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                    <path d="m8 10 3 3M12 14l2 2M15 17l3 3M19 21l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                {%- elsif icon == 'star' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 4l3.5 7.5L28 13l-6 5.8 1.4 8.2L16 23l-7.4 4 1.4-8.2L4 13l8.5-1.5L16 4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                  </svg>
+                {%- elsif icon == 'home' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 14.5 16 4l12 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7 12.5V26h18V12.5" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                    <path d="M16 26v-6a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v6" stroke="currentColor" stroke-width="1.4"/>
+                  </svg>
+                {%- elsif icon == 'gift' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="12" width="24" height="16" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                    <path d="M3 8h26v4H3V8ZM16 8v20" stroke="currentColor" stroke-width="1.4"/>
+                    <path d="M16 8c0-2.5-2-4.5-4.5-4.5-2.2 0-3 2.7-1 4.5 1.5 1.4 5.5 0 5.5 0ZM16 8c0-2.5 2-4.5 4.5-4.5 2.2 0 3 2.7 1 4.5-1.5 1.4-5.5 0-5.5 0Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                  </svg>
+                {%- elsif icon == 'concierge' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 25h24M6 25v-5a10 10 0 0 1 20 0v5M16 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="16" cy="4" r="2" fill="currentColor"/>
+                  </svg>
+                {%- elsif icon == 'recycle' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 6h8l2 4M6 22l4-7 4 2M26 22l-4-7-4 2" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                    <path d="M9 7 5 11l4 4M21 27l4-4-4-4M10 24l5 2 2-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- elsif icon == 'return' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12h14a7 7 0 0 1 7 7v1a7 7 0 0 1-7 7H10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                    <path d="m11 7-6 5 6 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div class="itx__content">
+              {%- if b.title != blank -%}
+                <h3 class="itx__title itx__title--{{ title_font }}">
+                  {{ b.title }}
+                </h3>
+              {%- endif -%}
+
+              {%- if b.description != blank -%}
+                <div class="itx__description">
+                  {{ b.description }}
+                </div>
+              {%- endif -%}
+
+              {%- if has_link and b.link_label != blank -%}
+                <a href="{{ b.link }}" class="itx__link" {% if b.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+                  <span>{{ b.link_label }}</span>
+                  <svg class="itx__link-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Icon + Text",
+  "tag": "section",
+  "class": "itx-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_layout",
+      "label": "Layout style",
+      "options": [
+        { "value": "grid", "label": "Grid (Header on top, items below)" },
+        { "value": "split", "label": "Split 2-column (Header on left, items on right)" }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Crafted For Generations"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built with intention,"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent (italic, colored)",
+      "default": "designed for living."
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Every detail is engineered with precision and finished by hand for exceptional longevity.</p>"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Header button label",
+      "info": "Optional button in header"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Header button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_open_in_new_tab",
+      "label": "Open header button in new tab",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Grid & Column Layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" },
+        { "value": "3", "label": "3 columns" },
+        { "value": "4", "label": "4 columns" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "label": "Columns on tablet",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" },
+        { "value": "3", "label": "3 columns" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        { "value": "1-col", "label": "1 column (stacked)" },
+        { "value": "2-col", "label": "2 columns" },
+        { "value": "scroll", "label": "Horizontal swipe slider" }
+      ],
+      "default": "1-col"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "options": [
+        { "value": "clean", "label": "Clean (minimal)" },
+        { "value": "top-border", "label": "Top accent line" },
+        { "value": "bordered", "label": "Bordered" },
+        { "value": "card", "label": "Card (filled box)" }
+      ],
+      "default": "clean"
+    },
+    {
+      "type": "select",
+      "id": "icon_position",
+      "label": "Icon position",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "left", "label": "Left (side-by-side)" }
+      ],
+      "default": "top"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "title_font",
+      "label": "Title font style",
+      "options": [
+        { "value": "sans", "label": "Modern Sans (DM Sans)" },
+        { "value": "serif", "label": "Editorial Serif (Cormorant)" }
+      ],
+      "default": "sans"
+    },
+    {
+      "type": "select",
+      "id": "icon_shape",
+      "label": "Icon background shape",
+      "options": [
+        { "value": "plain", "label": "None (transparent)" },
+        { "value": "circle", "label": "Soft circle" },
+        { "value": "square", "label": "Rounded square" }
+      ],
+      "default": "plain"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "icon_container_size",
+      "min": 40,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Icon container size (for circle/square)",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#f8f4ee"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading & title color",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Description / subtext color",
+      "default": "#5c564f"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent & icon color",
+      "default": "#c79b6b"
+    },
+    {
+      "type": "color",
+      "id": "dark_color",
+      "label": "Dark color (button text)",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background color (for filled card style)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border / divider color",
+      "default": "#e5dfd5"
+    },
+    {
+      "type": "color",
+      "id": "icon_bg_color",
+      "label": "Icon background tint (for circle/square)",
+      "default": "#f1e9dd"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "column_gap_desktop",
+      "min": 12,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "label": "Column gap (desktop)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Column gap (mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Icon + Text Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Preset icon",
+          "options": [
+            { "value": "table", "label": "Accordion table mechanism" },
+            { "value": "oak", "label": "European Oak / Leaf" },
+            { "value": "tools", "label": "Craftsmanship / Tools" },
+            { "value": "truck", "label": "Delivery truck" },
+            { "value": "shield", "label": "Shield / Warranty" },
+            { "value": "box", "label": "Box / White glove package" },
+            { "value": "ruler", "label": "Ruler / Dimensions" },
+            { "value": "home", "label": "Home trial" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "concierge", "label": "Concierge" },
+            { "value": "recycle", "label": "Sustainability / Eco" },
+            { "value": "star", "label": "Star / Premium quality" },
+            { "value": "return", "label": "30-Day Return" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "oak"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon image",
+          "info": "Optional. Overrides the preset icon above."
+        },
+        {
+          "type": "html",
+          "id": "custom_svg",
+          "label": "Custom SVG code",
+          "info": "Optional. Paste raw SVG markup if you have custom vectors."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Solid European Oak"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Sourced from sustainably managed European forests, built to last for generations.</p>"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional link for the item"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "info": "Leave blank to hide link text"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_in_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Icon + Text",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "oak",
+            "title": "Solid European Oak",
+            "description": "<p>Sourced from sustainably managed forests and crafted to endure generations of gatherings.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "table",
+            "title": "Seamless Expansion",
+            "description": "<p>Effortless patented mechanism glides open in seconds without heavy lifting or visible seams.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "tools",
+            "title": "Handcrafted in Croatia",
+            "description": "<p>Built by master woodworkers combining time-honored joinery with precision engineering.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "White Glove Delivery",
+            "description": "<p>Complimentary in-room delivery, complete assembly, and packaging removal included.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

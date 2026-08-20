@@ -1,0 +1,1030 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+{%- liquid
+  assign section_id = section.id
+  assign s = section.settings
+-%}
+
+{%- style -%}
+  .faq-promise--{{ section_id }} {
+    --fp-bg: {{ s.background_color | default: '#ffffff' }};
+    --fp-text: {{ s.text_color | default: '#14110e' }};
+    --fp-accent: {{ s.accent_color | default: '#c79b6b' }};
+    --fp-desc: {{ s.description_color | default: '#5c564f' }};
+    --fp-card-bg: {{ s.card_bg_color | default: '#faf8f5' }};
+    --fp-card-text: {{ s.card_text_color | default: '#14110e' }};
+    --fp-btn-bg: {{ s.button_bg_color | default: '#be9263' }};
+    --fp-btn-text: {{ s.button_text_color | default: '#ffffff' }};
+    --fp-border: {{ s.border_color | default: 'rgba(20, 17, 14, 0.09)' }};
+    --fp-max-width: {{ s.container_width | default: 1320 }}px;
+    --fp-col-gap: {{ s.column_gap | default: 64 }}px;
+    --fp-card-pad: {{ s.card_padding | default: 48 }}px;
+    --fp-pad-top: {{ s.padding_top | default: 80 }}px;
+    --fp-pad-bottom: {{ s.padding_bottom | default: 80 }}px;
+
+    position: relative;
+    width: 100%;
+    background-color: var(--fp-bg);
+    color: var(--fp-text);
+    padding-top: var(--fp-pad-top);
+    padding-bottom: var(--fp-pad-bottom);
+    box-sizing: border-box;
+    border-bottom: 1px solid #000E1E1A;
+  }
+
+  .faq-promise--{{ section_id }} * {
+    box-sizing: border-box;
+  }
+
+  .faq-promise__container {
+    width: 100%;
+    max-width: var(--fp-max-width);
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* ---------- Two-Column Grid ---------- */
+
+  .faq-promise__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--fp-col-gap);
+    align-items: start;
+  }
+
+  /* ---------- Left Column: FAQ ---------- */
+
+  .faq-promise__faq {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-promise__eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fp-accent);
+    margin-bottom: 14px;
+  }
+
+  .faq-promise__heading {
+    margin: 0 0 44px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(38px, 4.4vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--fp-text);
+  }
+
+  .faq-promise__heading-accent {
+    font-style: italic;
+    color: var(--fp-accent);
+    font-weight: 600;
+  }
+
+  /* FAQ Accordion List */
+
+  .faq-promise__list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: none;
+  }
+
+  .faq-promise__item {
+    border-bottom: 1px solid var(--fp-border);
+    transition: background-color 0.2s ease;
+  }
+
+  .faq-promise__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 22px 0;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    gap: 16px;
+    color: var(--fp-text);
+  }
+
+  .faq-promise__question:focus-visible {
+    outline: 2px solid var(--fp-accent);
+    outline-offset: 4px;
+  }
+
+  .faq-promise__question-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Question Mark Icon Bubble */
+
+  .faq-promise__icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .faq-promise__icon svg {
+    width: 32px;
+    height: 32px;
+    display: block;
+  }
+
+  .faq-promise__question-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(20px, 2.1vw, 23px);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: var(--fp-text);
+  }
+
+  .faq-promise__chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--fp-text);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-promise__chevron svg {
+    width: 15px;
+    height: 15px;
+    display: block;
+    stroke-width: 1.5;
+  }
+
+  /* Answer collapse animation */
+
+  .faq-promise__answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-promise__answer-inner {
+    overflow: hidden;
+  }
+
+  .faq-promise__answer {
+    padding-left: 48px;
+    padding-bottom: 24px;
+    padding-right: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--fp-desc);
+  }
+
+  .faq-promise__answer p {
+    margin: 0;
+  }
+
+  .faq-promise__answer p + p {
+    margin-top: 10px;
+  }
+
+  /* Open FAQ State */
+
+  .faq-promise__item.is-open .faq-promise__chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-promise__item.is-open .faq-promise__answer-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  /* ---------- Right Column: 30-Day Promise Card ---------- */
+
+  .faq-promise__card {
+    position: relative;
+    background-color: var(--fp-card-bg);
+    color: var(--fp-card-text);
+    padding: var(--fp-card-pad);
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+
+  /* Circular Badge Top Right */
+
+  .faq-promise__badge {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #ede7de;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  .faq-promise__badge-number {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #C79B6B;
+  }
+
+  .faq-promise__badge-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #C79B6B;
+  }
+
+  /* Card Headings */
+
+  .faq-promise__card-heading {
+    margin: 0 0 20px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(34px, 3.8vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--fp-card-text);
+    padding-right: 68px; /* space for badge */
+  }
+
+  .faq-promise__card-heading-accent {
+    font-style: italic;
+    color: var(--fp-accent);
+    font-weight: 600;
+  }
+
+  .faq-promise__description {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--fp-desc);
+    margin: 0 0 30px;
+  }
+
+  /* Feature List */
+
+  .faq-promise__features {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0 0 34px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .faq-promise__feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--fp-card-text);
+  }
+
+  .faq-promise__feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fp-accent);
+    flex-shrink: 0;
+  }
+
+  .faq-promise__feature-icon svg {
+    width: 13px;
+    height: 13px;
+    display: block;
+  }
+
+  /* Primary Button */
+
+  .faq-promise__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 52px;
+    padding: 0 24px;
+    background-color: var(--fp-btn-bg);
+    color: var(--fp-btn-text);
+    border: 1px solid var(--fp-btn-bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
+    border-radius: 0;
+  }
+
+  .faq-promise__button:hover {
+    background-color: #ab8052;
+    border-color: #ab8052;
+    color: #ffffff;
+  }
+
+  /* Secondary Link */
+
+  .faq-promise__secondary-link {
+    display: block;
+    margin-top: 18px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8c867f;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .faq-promise__secondary-link:hover {
+    color: var(--fp-text);
+  }
+
+  /* ---------- Responsive Styles ---------- */
+
+  @media screen and (max-width: 989px) {
+    .faq-promise--{{ section_id }} {
+      --fp-pad-top: {{ s.padding_top | default: 80 | times: 0.75 | round }}px;
+      --fp-pad-bottom: {{ s.padding_bottom | default: 80 | times: 0.75 | round }}px;
+      --fp-col-gap: 40px;
+    }
+
+    .faq-promise__grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .faq-promise__card {
+      padding: 40px 32px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .faq-promise--{{ section_id }} {
+      --fp-pad-top: {{ s.padding_top | default: 80 | times: 0.6 | round }}px;
+      --fp-pad-bottom: {{ s.padding_bottom | default: 80 | times: 0.6 | round }}px;
+    }
+
+    .faq-promise__container {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .faq-promise__eyebrow {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .faq-promise__heading {
+      font-size: clamp(32px, 8.5vw, 40px);
+      margin-bottom: 28px;
+    }
+
+    .faq-promise__question {
+      padding: 18px 0;
+    }
+
+    .faq-promise__question-left {
+      gap: 14px;
+    }
+
+    .faq-promise__icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .faq-promise__icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .faq-promise__question-text {
+      font-size: 19px;
+    }
+
+    .faq-promise__answer {
+      padding-left: 42px;
+      padding-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .faq-promise__card {
+      padding: 32px 22px;
+    }
+
+    .faq-promise__badge {
+      top: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+    }
+
+    .faq-promise__badge-number {
+      font-size: 14px;
+    }
+
+    .faq-promise__badge-label {
+      font-size: 10px;
+    }
+
+    .faq-promise__card-heading {
+      font-size: clamp(28px, 7.5vw, 36px);
+      padding-right: 54px;
+      margin-bottom: 16px;
+    }
+
+    .faq-promise__description {
+      font-size: 13.5px;
+      margin-bottom: 24px;
+    }
+
+    .faq-promise__features {
+      margin-bottom: 28px;
+      gap: 12px;
+    }
+
+    .faq-promise__feature {
+      font-size: 13px;
+    }
+
+    .faq-promise__button {
+      height: 48px;
+      font-size: 11.5px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  class="faq-promise faq-promise--{{ section_id }}"
+  id="faq-promise-{{ section_id }}"
+  data-section-id="{{ section_id }}"
+>
+  <div class="page-width">
+    <div class="faq-promise__grid">
+      <!-- Left Column: FAQ -->
+      <div class="faq-promise__faq">
+        {%- if s.eyebrow != blank -%}
+          <div class="faq-promise__eyebrow">
+            {{ s.eyebrow }}
+          </div>
+        {%- endif -%}
+
+        {%- if s.heading_line_1 != blank or s.heading_accent != blank -%}
+          <h2 class="faq-promise__heading">
+            {%- if s.heading_line_1 != blank -%}
+              <span>{{ s.heading_line_1 }}</span><br>
+            {%- endif -%}
+            {%- if s.heading_accent != blank -%}
+              <span class="faq-promise__heading-accent">{{ s.heading_accent }}</span>
+            {%- endif -%}
+          </h2>
+        {%- endif -%}
+
+        <!-- FAQ Accordion Items -->
+        <div class="faq-promise__list" role="region" aria-label="Frequently Asked Questions">
+          {%- assign faq_index = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'faq' -%}
+              {%- assign faq_index = faq_index | plus: 1 -%}
+              {%- assign is_open = false -%}
+              {%- if block.settings.open_default or faq_index == 1 -%}
+                {%- assign is_open = true -%}
+              {%- endif -%}
+
+              <div
+                class="faq-promise__item{% if is_open %} is-open{% endif %}"
+                data-faq-item
+                {{ block.shopify_attributes }}
+              >
+                <button
+                  type="button"
+                  class="faq-promise__question"
+                  aria-expanded="{% if is_open %}true{% else %}false{% endif %}"
+                  aria-controls="faq-answer-{{ block.id }}"
+                  id="faq-question-{{ block.id }}"
+                  data-faq-trigger
+                >
+                  <div class="faq-promise__question-left">
+                    <div class="faq-promise__icon" aria-hidden="true">
+                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 5C4.89543 5 4 5.89543 4 7V21C4 22.1046 4.89543 23 6 23H8V27.5L13.5 23H26C27.1046 23 28 22.1046 28 21V7C28 5.89543 27.1046 5 26 5H6Z" fill="#F7F2EA"/>
+                        <text x="16" y="14.5" dominant-baseline="middle" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="17" font-weight="600" fill="var(--fp-accent)">?</text>
+                      </svg>
+                    </div>
+                    <span class="faq-promise__question-text">
+                      {{ block.settings.question }}
+                    </span>
+                  </div>
+
+                  <div class="faq-promise__chevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </button>
+
+                <div
+                  class="faq-promise__answer-wrap"
+                  id="faq-answer-{{ block.id }}"
+                  role="region"
+                  aria-labelledby="faq-question-{{ block.id }}"
+                >
+                  <div class="faq-promise__answer-inner">
+                    <div class="faq-promise__answer">
+                      {{ block.settings.answer }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Right Column: 30-Day Promise Card -->
+      {%- if s.enable_promise_card -%}
+        <div class="faq-promise__card">
+          <!-- Circular Badge -->
+          {%- if s.badge_number != blank or s.badge_label != blank -%}
+            <div class="faq-promise__badge" aria-hidden="true">
+              {%- if s.badge_number != blank -%}
+                <span class="faq-promise__badge-number">{{ s.badge_number }}</span>
+              {%- endif -%}
+              {%- if s.badge_label != blank -%}
+                <span class="faq-promise__badge-label">{{ s.badge_label }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          <!-- Card Headings -->
+          {%- if s.card_heading_line_1 != blank or s.card_heading_accent != blank -%}
+            <h3 class="faq-promise__card-heading">
+              {%- if s.card_heading_line_1 != blank -%}
+                <span>{{ s.card_heading_line_1 }}</span><br>
+              {%- endif -%}
+              {%- if s.card_heading_accent != blank -%}
+                <span class="faq-promise__card-heading-accent">{{ s.card_heading_accent }}</span>
+              {%- endif -%}
+            </h3>
+          {%- endif -%}
+
+          <!-- Description -->
+          {%- if s.card_description != blank -%}
+            <p class="faq-promise__description">
+              {{ s.card_description }}
+            </p>
+          {%- endif -%}
+
+          <!-- Feature List -->
+          <ul class="faq-promise__features">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'feature' -%}
+                <li class="faq-promise__feature" {{ block.shopify_attributes }}>
+                  <span class="faq-promise__feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+                    </svg>
+                  </span>
+                  <span>{{ block.settings.text }}</span>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+
+          <!-- Primary CTA Button -->
+          {%- if s.button_text != blank -%}
+            <a
+              href="{{ s.button_url | default: '#' }}"
+              class="faq-promise__button"
+            >
+              {{ s.button_text }}
+            </a>
+          {%- endif -%}
+
+          <!-- Secondary Link -->
+          {%- if s.secondary_text != blank -%}
+            <a
+              href="{{ s.secondary_url | default: '#' }}"
+              class="faq-promise__secondary-link"
+            >
+              {{ s.secondary_text }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    function initFaqPromise(section) {
+      if (!section) return;
+      const triggers = section.querySelectorAll('[data-faq-trigger]');
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', function () {
+          const item = this.closest('[data-faq-item]');
+          if (!item) return;
+
+          const isOpen = item.classList.contains('is-open');
+
+          // Close all sibling items
+          section.querySelectorAll('[data-faq-item]').forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('is-open');
+              const otherTrigger = otherItem.querySelector('[data-faq-trigger]');
+              if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          // Toggle current item
+          if (isOpen) {
+            item.classList.remove('is-open');
+            this.setAttribute('aria-expanded', 'false');
+          } else {
+            item.classList.add('is-open');
+            this.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    }
+
+    // Initialize on DOMContentLoaded and for Shopify Theme Editor lifecycle events
+    document.addEventListener('DOMContentLoaded', function () {
+      const section = document.getElementById('faq-promise-{{ section_id }}');
+      initFaqPromise(section);
+    });
+
+    document.addEventListener('shopify:section:load', function (event) {
+      if (event.detail.sectionId === '{{ section_id }}') {
+        const section = document.getElementById('faq-promise-{{ section_id }}');
+        initFaqPromise(section);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ + 30-Day Promise",
+  "tag": "section",
+  "class": "section-faq-promise",
+  "settings": [
+    {
+      "type": "header",
+      "content": "FAQ Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "BEFORE YOU DECIDE"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Main heading line 1",
+      "default": "Questions worth"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Main heading accent (italic)",
+      "default": "asking."
+    },
+    {
+      "type": "header",
+      "content": "Promise Card Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_promise_card",
+      "label": "Show 30-Day Promise Card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_number",
+      "label": "Badge number",
+      "default": "30"
+    },
+    {
+      "type": "text",
+      "id": "badge_label",
+      "label": "Badge label",
+      "default": "Days"
+    },
+    {
+      "type": "text",
+      "id": "card_heading_line_1",
+      "label": "Card heading line 1",
+      "default": "The 30-day"
+    },
+    {
+      "type": "text",
+      "id": "card_heading_accent",
+      "label": "Card heading accent (italic)",
+      "default": "promise."
+    },
+    {
+      "type": "textarea",
+      "id": "card_description",
+      "label": "Card description",
+      "default": "We believe this is the best extending dining table available. But your home is the only real test. Try it for 30 days. If it's not exactly right, we collect it and refund you completely."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary button text",
+      "default": "ORDER THE TABLE — FROM $3,200"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_text",
+      "label": "Secondary link text",
+      "default": "OR SPEAK WITH OUR CONCIERGE TEAM FIRST"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary link URL"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Main text & headings",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color (gold / italics)",
+      "default": "#c79b6b"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description & answer text",
+      "default": "#5c564f"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Promise card background",
+      "default": "#faf8f5"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Promise card text",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#be9263"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border separator color",
+      "default": "rgba(20, 17, 14, 0.09)"
+    },
+    {
+      "type": "header",
+      "content": "Layout & Spacing"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container maximum width",
+      "min": 1000,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1320
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Desktop column gap",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Promise card padding",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How long does delivery take?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We ship within 3–5 weeks from our workshop in Croatia. White-glove delivery to your room of choice, assembly included.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_default",
+          "label": "Open by default",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Promise Feature",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Feature text",
+          "default": "Free white-glove delivery"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ + 30-Day Promise",
+      "settings": {
+        "eyebrow": "BEFORE YOU DECIDE",
+        "heading_line_1": "Questions worth",
+        "heading_accent": "asking.",
+        "enable_promise_card": true,
+        "badge_number": "30",
+        "badge_label": "Days",
+        "card_heading_line_1": "The 30-day",
+        "card_heading_accent": "promise.",
+        "card_description": "We believe this is the best extending dining table available. But your home is the only real test. Try it for 30 days. If it's not exactly right, we collect it and refund you completely.",
+        "button_text": "ORDER THE TABLE — FROM $3,200",
+        "secondary_text": "OR SPEAK WITH OUR CONCIERGE TEAM FIRST"
+      },
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>We ship within 3–5 weeks from our workshop in Croatia. White-glove delivery to your room of choice, assembly included.</p>",
+            "open_default": true
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What if it doesn't fit my space?",
+            "answer": "<p>Our 30-day trial gives you ample time to live with the table. If the dimensions or fit aren't ideal, we will arrange a complimentary collection and complete refund.</p>",
+            "open_default": false
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What wood finish options are there?",
+            "answer": "<p>We offer Natural European Oak, Smoked Oak, and Ebonized Dark Oak finishes, all sealed with an ultra-matte, water-resistant protective treatment.</p>",
+            "open_default": false
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can one person really move it?",
+            "answer": "<p>Yes. The patented internal counterweight and ball-bearing rail system allows effortless extension from either end with one hand.</p>",
+            "open_default": false
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is the mechanism durable long-term?",
+            "answer": "<p>Precision-milled aerospace aluminum and steel tracks are tested to over 20,000 extension cycles and backed by our full 10-year warranty.</p>",
+            "open_default": false
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "Free white-glove delivery"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "30-day home trial"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "Full refund, no questions asked"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "10-year mechanism warranty"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

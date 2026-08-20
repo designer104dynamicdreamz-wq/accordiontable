@@ -11,25 +11,176 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "footer_home_cta_3QyW3G": {
+      "type": "footer-home-cta",
+      "blocks": {
+        "mini_benefit_Hm77MR": {
+          "type": "mini_benefit",
+          "settings": {
+            "icon": "truck",
+            "custom_svg": "",
+            "text": "Free White Glove Delivery",
+            "show_divider": true
+          }
+        },
+        "mini_benefit_TWX4ci": {
+          "type": "mini_benefit",
+          "settings": {
+            "icon": "return",
+            "custom_svg": "",
+            "text": "30-day return",
+            "show_divider": true
+          }
+        },
+        "mini_benefit_hf88BJ": {
+          "type": "mini_benefit",
+          "settings": {
+            "icon": "shield",
+            "custom_svg": "",
+            "text": "10-year warranty",
+            "show_divider": false
+          }
+        },
+        "bottom_benefit_eQ4fYE": {
+          "type": "bottom_benefit",
+          "settings": {
+            "icon": "home_trial",
+            "custom_svg": "",
+            "title": "30-Day",
+            "subtitle": "Home Trial"
+          }
+        },
+        "bottom_benefit_bETWT4": {
+          "type": "bottom_benefit",
+          "settings": {
+            "icon": "white_glove",
+            "custom_svg": "",
+            "title": "White",
+            "subtitle": "Glove delivery"
+          }
+        },
+        "bottom_benefit_RRHNWM": {
+          "type": "bottom_benefit",
+          "settings": {
+            "icon": "welcome_gift",
+            "custom_svg": "",
+            "title": "Warm",
+            "subtitle": "Welcome Gift"
+          }
+        },
+        "bottom_benefit_TY7LwL": {
+          "type": "bottom_benefit",
+          "settings": {
+            "icon": "warranty",
+            "custom_svg": "",
+            "title": "10-Year",
+            "subtitle": "Warranty"
+          }
+        }
+      },
+      "block_order": [
+        "mini_benefit_Hm77MR",
+        "mini_benefit_TWX4ci",
+        "mini_benefit_hf88BJ",
+        "bottom_benefit_eQ4fYE",
+        "bottom_benefit_bETWT4",
+        "bottom_benefit_RRHNWM",
+        "bottom_benefit_TY7LwL"
+      ],
+      "name": "Footer Home CTA",
+      "settings": {
+        "background_image": "shopify://shop_images/image_29560.png",
+        "overlay_color": "#f6f3ee",
+        "overlay_opacity": 40,
+        "heading_primary": "Ready to see it",
+        "heading_accent": "in your home?",
+        "description": "30 days. If it’s not right, we collect it and refund you completely. No questions asked.",
+        "heading_color": "#14110e",
+        "accent_color": "#c79b6b",
+        "description_color": "#5c564f",
+        "primary_button_text": "ORDER THE TABLE — FROM $3,200",
+        "primary_button_url": "",
+        "primary_button_bg": "#c79b6b",
+        "primary_button_text_color": "#14110e",
+        "secondary_button_text": "SPEAK TO OUR CONCIERGE",
+        "secondary_button_url": "",
+        "secondary_button_bg": "#ffffff",
+        "secondary_button_text_color": "#14110e",
+        "secondary_button_border_color": "#14110e",
+        "enable_dark_bar": true,
+        "dark_bar_bg": "#261e18",
+        "dark_bar_text_color": "#ffffff",
+        "dark_bar_accent_color": "#c79b6b",
+        "dark_bar_padding_y": 32,
+        "padding_top": 92,
+        "padding_bottom": 72
+      }
+    },
     "footer": {
       "type": "footer",
+      "blocks": {
+        "brand_information": {
+          "type": "brand_information",
+          "settings": {
+            "custom_logo": "shopify://shop_images/svg-full-logo_1.svg",
+            "description": "Solid European oak extending dining table. Handcrafted in Croatia by a third-generation family workshop. From $3,200 with free shipping.",
+            "show_social": false
+          }
+        },
+        "explore": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Explore",
+            "menu": "explore-menu"
+          }
+        },
+        "help": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help",
+            "menu": "help-menu"
+          }
+        },
+        "location": {
+          "type": "location",
+          "settings": {
+            "heading": "Locations",
+            "address": "1731 Beacon Street,\nBoston, MA 02445",
+            "map_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand_information",
+        "explore",
+        "help",
+        "location"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
+        "background_color": "#14110e",
+        "heading_color": "#c79b6b",
+        "text_color": "#948e87",
+        "text_hover_color": "#ffffff",
+        "border_color": "#f6f3ee1a",
+        "copyright_text": "Copyright © 2026, Accordion Table. All rights reserved.",
         "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
+        "container_width": 1360,
         "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 80,
+        "padding_bottom": 0,
+        "color_scheme": "",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false
       }
     }
   },
   "order": [
+    "footer_home_cta_3QyW3G",
     "footer"
   ]
 }

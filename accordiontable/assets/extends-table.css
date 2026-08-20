@@ -1,0 +1,291 @@
+/* ==========================================================================
+   Extends Table Section — Scoped Styles
+   Exact Figma Node 4-1436 recreation
+   ========================================================================== */
+
+.ext-table {
+  --ext-bg: #ffffff;
+  --ext-text: #14110e;
+  --ext-accent: #c79b6b;
+  --ext-desc: #5c564f;
+  --ext-spec-label: #5c564f;
+  --ext-spec-val: #14110e;
+  --ext-border: #ece7e1;
+  --ext-gap: clamp(40px, 6vw, 80px);
+  --ext-media-aspect: 16 / 11;
+  --ext-media-aspect-mobile: 4 / 3;
+
+  position: relative;
+  width: 100%;
+  background-color: var(--ext-bg);
+  color: var(--ext-text);
+  box-sizing: border-box;
+}
+
+
+/* ---------- 2-Column Grid Layout ---------- */
+
+.ext-table__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ext-gap);
+  align-items: center;
+  width: 100%;
+}
+
+.ext-table__grid--image-right .ext-table__media-col {
+  order: 2;
+}
+
+.ext-table__grid--image-right .ext-table__content-col {
+  order: 1;
+}
+
+/* ---------- Media Column (Left) ---------- */
+
+.ext-table__media-col {
+  position: relative;
+  width: 100%;
+}
+
+.ext-table__media-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f4f0eb;
+}
+
+.ext-table__media-wrapper img,
+.ext-table__media-wrapper video,
+.ext-table__media-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border: none;
+}
+
+.ext-table__media-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ext-table__media--desktop {
+  width: 100%;
+  height: 100%;
+}
+
+.ext-table__media--desktop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ext-table__media--mobile {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.ext-table__media--mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ext-table__has-mobile-image .ext-table__media--desktop {
+  display: block;
+}
+
+/* ---------- Content Column (Right) ---------- */
+
+.ext-table__content-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Heading */
+
+.ext-table__heading {
+  margin: 0 0 20px 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ext-text);
+}
+
+.ext-table__heading-primary {
+  display: block;
+  color: var(--ext-text);
+}
+
+.ext-table__heading-accent {
+  display: block;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ext-accent);
+}
+
+/* Description */
+
+.ext-table__description {
+  margin: 0 0 clamp(28px, 4vw, 40px) 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 1.1vw, 15px);
+  line-height: 1.65;
+  color: var(--ext-desc);
+}
+
+.ext-table__description p {
+  margin: 0;
+}
+
+.ext-table__description p+p {
+  margin-top: 10px;
+}
+
+/* Specifications Table */
+
+.ext-table__specs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ext-border);
+}
+
+.ext-table__spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--ext-border);
+  gap: 16px;
+}
+
+.ext-table__spec-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 1.05vw, 15px);
+  line-height: 1.4;
+  color: var(--ext-spec-label);
+  flex: 1;
+}
+
+.ext-table__spec-value {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: clamp(14px, 1.05vw, 15px);
+  line-height: 1.4;
+  color: var(--ext-spec-val);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Optional CTA Button */
+
+.ext-table__action {
+  margin-top: 32px;
+}
+
+.ext-table__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border: 1px solid var(--ext-accent);
+  background-color: var(--ext-accent);
+  color: #14110e;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ext-table__btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Tablet & Mobile Responsive
+   ========================================================================== */
+
+@media screen and (max-width: 989px) {
+  .ext-table {
+    --ext-gap: 36px;
+  }
+
+  .ext-table__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ext-table__grid--image-right .ext-table__media-col {
+    order: 1;
+  }
+
+  .ext-table__grid--image-right .ext-table__content-col {
+    order: 2;
+  }
+
+  .ext-table__media-wrapper {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .ext-table {
+    --ext-gap: 28px;
+  }
+
+  .ext-table__media-wrapper {
+    aspect-ratio: var(--ext-media-aspect-mobile);
+  }
+
+  .ext-table__has-mobile-image .ext-table__media--desktop {
+    display: none;
+  }
+
+  .ext-table__has-mobile-image .ext-table__media--mobile {
+    display: block;
+  }
+
+  .ext-table__heading {
+    font-size: clamp(28px, 7.5vw, 36px);
+    margin-bottom: 16px;
+  }
+
+  .ext-table__description {
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  .ext-table__spec-row {
+    padding: 13px 0;
+  }
+
+  .ext-table__spec-label,
+  .ext-table__spec-value {
+    font-size: 13.5px;
+  }
+
+  .ext-table__btn {
+    width: 100%;
+  }
+}

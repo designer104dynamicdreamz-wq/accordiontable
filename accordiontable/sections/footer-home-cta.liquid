@@ -1,0 +1,951 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+{%- liquid
+  assign section_id = section.id
+  assign s = section.settings
+  assign overlay_val = s.overlay_opacity | default: 85 | divided_by: 100.0
+-%}
+
+{%- style -%}
+  .footer-home-cta--{{ section_id }} {
+    --fhc-accent: {{ s.accent_color | default: '#c79b6b' }};
+    --fhc-heading-color: {{ s.heading_color | default: '#14110e' }};
+    --fhc-desc-color: {{ s.description_color | default: '#5c564f' }};
+    --fhc-btn1-bg: {{ s.primary_button_bg | default: '#c79b6b' }};
+    --fhc-btn1-text: {{ s.primary_button_text_color | default: '#14110e' }};
+    --fhc-btn2-bg: {{ s.secondary_button_bg | default: '#ffffff' }};
+    --fhc-btn2-text: {{ s.secondary_button_text_color | default: '#14110e' }};
+    --fhc-btn2-border: {{ s.secondary_button_border_color | default: '#14110e' }};
+    --fhc-dark-bg: {{ s.dark_bar_bg | default: '#14110e' }};
+    --fhc-dark-text: {{ s.dark_bar_text_color | default: '#ffffff' }};
+    --fhc-dark-accent: {{ s.dark_bar_accent_color | default: '#c79b6b' }};
+    --fhc-pad-top: {{ s.padding_top | default: 92 }}px;
+    --fhc-pad-bottom: {{ s.padding_bottom | default: 72 }}px;
+    --fhc-dark-pad-y: {{ s.dark_bar_padding_y | default: 32 }}px;
+
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .footer-home-cta--{{ section_id }} * {
+    box-sizing: border-box;
+  }
+
+  /* ---------- PART 1: Main CTA Section ---------- */
+
+  .footer-home-cta__hero {
+    position: relative;
+    width: 100%;
+    background-color: #f9f6f0;
+    padding-top: var(--fhc-pad-top);
+    padding-bottom: var(--fhc-pad-bottom);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* Background Image & Overlay */
+
+  .footer-home-cta__bg-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .footer-home-cta__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .footer-home-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: {{ s.overlay_color | default: '#ffffff' }};
+        opacity: 0.94;
+    z-index: 1;
+    display: block !important;
+  }
+
+  /* CTA Inner Content */
+
+  .footer-home-cta__inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-home-cta__heading {
+    margin: 0;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(38px, 4.6vw, 54px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--fhc-heading-color);
+  }
+
+  .footer-home-cta__heading-accent {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--fhc-accent);
+  }
+
+  .footer-home-cta__description {
+    margin: 18px 0 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--fhc-desc-color);
+    max-width: 680px;
+  }
+
+  /* Buttons Row */
+
+  .footer-home-cta__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .footer-home-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 12px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 0;
+    white-space: nowrap;
+  }
+
+  .footer-home-cta__btn svg {
+    width: 12px;
+    height: 12px;
+    display: block;
+    stroke-width: 2;
+    transition: transform 0.25s ease;
+  }
+
+  .footer-home-cta__btn:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  /* Button 1: Primary (Tan / Camel) */
+
+  .footer-home-cta__btn--primary {
+    background-color: var(--fhc-btn1-bg);
+    color: var(--fhc-btn1-text);
+    border: 1px solid var(--fhc-btn1-bg);
+  }
+
+  .footer-home-cta__btn--primary:hover {
+    background-color: #b3834f;
+    border-color: #b3834f;
+  }
+
+  /* Button 2: Secondary (White / Bordered) */
+
+  .footer-home-cta__btn--secondary {
+    color: var(--fhc-btn2-text);
+    border: 1px solid var(--fhc-btn2-border);
+  }
+
+  .footer-home-cta__btn--secondary:hover {
+    background-color: var(--fhc-btn2-text);
+    color: #ffffff;
+    border-color: var(--fhc-btn2-text);
+  }
+
+  /* Mini Benefits Row */
+
+  .footer-home-cta__mini-benefits {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-home-cta__mini-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--fhc-desc-color);
+  }
+
+  .footer-home-cta__mini-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fhc-accent);
+    flex-shrink: 0;
+  }
+
+  .footer-home-cta__mini-icon svg {
+    width: 19px;
+    height: 19px;
+    display: block;
+    stroke-width: 1.5;
+  }
+
+  .footer-home-cta__mini-icon img {
+    width: 19px;
+    height: 19px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .footer-home-cta__mini-divider {
+    width: 1px;
+    height: 16px;
+    background-color: rgba(20, 17, 14, 0.15);
+    margin: 0 24px;
+    flex-shrink: 0;
+  }
+
+  /* ---------- PART 2: Dark Benefits Bar ---------- */
+
+  .footer-home-cta__dark-bar {
+    width: 100%;
+    background-color: var(--fhc-dark-bg);
+    color: var(--fhc-dark-text);
+    padding-top: var(--fhc-dark-pad-y);
+    padding-bottom: var(--fhc-dark-pad-y);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .footer-home-cta__dark-container {
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .footer-home-cta__dark-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-home-cta__dark-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 20px;
+    position: relative;
+  }
+
+  .footer-home-cta__dark-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 28px;
+    background-color: rgb(246 243 238 / 10%);
+  }
+
+  .footer-home-cta__dark-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fhc-dark-accent);
+    flex-shrink: 0;
+  }
+
+  .footer-home-cta__dark-icon svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+    stroke-width: 1.4;
+  }
+
+  .footer-home-cta__dark-icon img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .footer-home-cta__dark-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .footer-home-cta__dark-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--fhc-dark-text);
+  }
+
+  .footer-home-cta__dark-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* ---------- Responsive Styles ---------- */
+
+  @media screen and (max-width: 989px) {
+    .footer-home-cta--{{ section_id }} {
+      --fhc-pad-top: {{ s.padding_top | default: 92 | times: 0.75 | round }}px;
+      --fhc-pad-bottom: {{ s.padding_bottom | default: 72 | times: 0.75 | round }}px;
+      --fhc-dark-pad-y: 28px;
+    }
+
+    .footer-home-cta__dark-grid {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 24px;
+    }
+
+    .footer-home-cta__dark-item:nth-child(2n)::after {
+      display: none;
+    }
+
+    .footer-home-cta__mini-divider {
+      margin: 0 16px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .footer-home-cta--{{ section_id }} {
+      --fhc-pad-top: {{ s.padding_top | default: 92 | times: 0.6 | round }}px;
+      --fhc-pad-bottom: {{ s.padding_bottom | default: 72 | times: 0.6 | round }}px;
+      --fhc-dark-pad-y: 24px;
+    }
+
+    .footer-home-cta__inner {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .footer-home-cta__heading {
+      font-size: clamp(32px, 8.5vw, 42px);
+    }
+
+    .footer-home-cta__description {
+      font-size: 14px;
+      margin: 14px 0 28px;
+    }
+
+    .footer-home-cta__buttons {
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .footer-home-cta__btn {
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .footer-home-cta__mini-benefits {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-home-cta__mini-divider {
+      display: none;
+    }
+
+    .footer-home-cta__dark-grid {
+      grid-template-columns: 1fr;
+      row-gap: 20px;
+    }
+
+    .footer-home-cta__dark-item {
+      justify-content: flex-start;
+      padding: 0 12px;
+    }
+
+    .footer-home-cta__dark-item::after {
+      display: none;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  class="footer-home-cta footer-home-cta--{{ section_id }}"
+  id="footer-home-cta-{{ section_id }}"
+  data-section-id="{{ section_id }}"
+>
+  <!-- PART 1: Main CTA Section -->
+  <div class="footer-home-cta__hero">
+    <div class="footer-home-cta__bg-wrap">
+      {%- if s.background_image != blank -%}
+        {{
+          s.background_image
+          | image_url: width: 2000
+          | image_tag:
+            loading: 'lazy',
+            widths: '600, 1000, 1400, 1800, 2000',
+            class: 'footer-home-cta__bg-img',
+            alt: s.heading_primary | default: 'Dining table in home setting'
+        }}
+      {%- endif -%}
+      <div class="footer-home-cta__overlay"></div>
+    </div>
+
+    <div class="footer-home-cta__inner">
+      {%- if s.heading_primary != blank or s.heading_accent != blank -%}
+        <h2 class="footer-home-cta__heading">
+          {%- if s.heading_primary != blank -%}
+            <span>{{ s.heading_primary }} </span>
+          {%- endif -%}
+          {%- if s.heading_accent != blank -%}
+            <span class="footer-home-cta__heading-accent">{{ s.heading_accent }}</span>
+          {%- endif -%}
+        </h2>
+      {%- endif -%}
+
+      {%- if s.description != blank -%}
+        <p class="footer-home-cta__description">
+          {{ s.description }}
+        </p>
+      {%- endif -%}
+
+      <!-- Buttons -->
+      {%- if s.primary_button_text != blank or s.secondary_button_text != blank -%}
+        <div class="footer-home-cta__buttons">
+          {%- if s.primary_button_text != blank -%}
+            <a
+              href="{{ s.primary_button_url | default: '#' }}"
+              class="footer-home-cta__btn footer-home-cta__btn--primary"
+            >
+              <span>{{ s.primary_button_text }}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          {%- endif -%}
+
+          {%- if s.secondary_button_text != blank -%}
+            <a
+              href="{{ s.secondary_button_url | default: '#' }}"
+              class="footer-home-cta__btn footer-home-cta__btn--secondary"
+            >
+              <span>{{ s.secondary_button_text }}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <!-- Mini Benefits Row -->
+      {%- assign mini_blocks = section.blocks | where: 'type', 'mini_benefit' -%}
+      {%- if mini_blocks.size > 0 -%}
+        <ul class="footer-home-cta__mini-benefits">
+          {%- for block in mini_blocks -%}
+            <li class="footer-home-cta__mini-item" {{ block.shopify_attributes }}>
+              <span class="footer-home-cta__mini-icon" aria-hidden="true">
+                {%- if block.settings.custom_icon != blank -%}
+                  {{ block.settings.custom_icon | image_url: width: 60 | image_tag: loading: 'lazy', alt: block.settings.text | default: '' }}
+                {%- elsif block.settings.custom_svg != blank -%}
+                  {{ block.settings.custom_svg }}
+                {%- else -%}
+                  {%- case block.settings.icon -%}
+                    {%- when 'truck' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="6" width="13" height="10" rx="1"/>
+                        <polygon points="14 9 18 9 21 12 21 16 14 16 14 9"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="17.5" cy="18.5" r="2.5"/>
+                      </svg>
+                    {%- when 'return' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 8v5a4 4 0 0 1-4 4H5"/>
+                        <polyline points="9 13 5 17 9 21"/>
+                        <polyline points="3 8 12 3 21 8 12 13 3 8"/>
+                      </svg>
+                    {%- when 'shield' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <polyline points="9 12 11 14 15 10"/>
+                      </svg>
+                    {%- else -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                  {%- endcase -%}
+                {%- endif -%}
+              </span>
+              <span>{{ block.settings.text }}</span>
+            </li>
+            {%- if block.settings.show_divider and forloop.last == false -%}
+              <li class="footer-home-cta__mini-divider" aria-hidden="true"></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <!-- PART 2: Dark Benefits Bar -->
+  {%- if s.enable_dark_bar -%}
+    {%- assign dark_blocks = section.blocks | where: 'type', 'bottom_benefit' -%}
+    {%- if dark_blocks.size > 0 -%}
+      <div class="footer-home-cta__dark-bar">
+        <div class="footer-home-cta__dark-container">
+          <ul class="footer-home-cta__dark-grid">
+            {%- for block in dark_blocks -%}
+              <li class="footer-home-cta__dark-item" {{ block.shopify_attributes }}>
+                <span class="footer-home-cta__dark-icon" aria-hidden="true">
+                  {%- if block.settings.custom_icon != blank -%}
+                    {{ block.settings.custom_icon | image_url: width: 80 | image_tag: loading: 'lazy', alt: block.settings.title | default: '' }}
+                  {%- elsif block.settings.custom_svg != blank -%}
+                    {{ block.settings.custom_svg }}
+                  {%- else -%}
+                    {%- case block.settings.icon -%}
+                      {%- when 'home_trial' -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                          <path d="M12 13a2 2 0 0 0-2 2c0 1.5 2 3 2 3s2-1.5 2-3a2 2 0 0 0-2-2z"/>
+                        </svg>
+                      {%- when 'white_glove' -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="1" y="6" width="13" height="10" rx="1"/>
+                          <polygon points="14 9 18 9 21 12 21 16 14 16 14 9"/>
+                          <circle cx="5.5" cy="18.5" r="2.5"/>
+                          <circle cx="17.5" cy="18.5" r="2.5"/>
+                        </svg>
+                      {%- when 'welcome_gift' -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="8" width="18" height="13" rx="1"/>
+                          <path d="M12 8v13"/>
+                          <path d="M19 8H5a2 2 0 0 1-2-2 2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 1-2 2z"/>
+                          <path d="M12 4c-1.5-2.5-4.5-2-5 0s3 4 5 4c2 0 5.5-4 5-4s-3.5-2.5-5 0z"/>
+                        </svg>
+                      {%- when 'warranty' -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                          <polyline points="9 12 11 14 15 10"/>
+                        </svg>
+                      {%- else -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"/>
+                          <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    {%- endcase -%}
+                  {%- endif -%}
+                </span>
+                <div class="footer-home-cta__dark-text">
+                  <span class="footer-home-cta__dark-title">{{ block.settings.title }}</span>
+                  <span class="footer-home-cta__dark-subtitle">{{ block.settings.subtitle }}</span>
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Footer Home CTA",
+  "tag": "section",
+  "class": "section-footer-home-cta",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main CTA Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background table lifestyle image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay tint color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 85
+    },
+    {
+      "type": "header",
+      "content": "Main CTA Typography"
+    },
+    {
+      "type": "text",
+      "id": "heading_primary",
+      "label": "Heading primary text",
+      "default": "Ready to see it"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent text (italic)",
+      "default": "in your home?"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description paragraph",
+      "default": "30 days. If it’s not right, we collect it and refund you completely. No questions asked."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent gold color",
+      "default": "#c79b6b"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description & benefit text color",
+      "default": "#5c564f"
+    },
+    {
+      "type": "header",
+      "content": "Primary Button (Tan / Camel)"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary button text",
+      "default": "ORDER THE TABLE — FROM $3,200"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_url",
+      "label": "Primary button URL"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_bg",
+      "label": "Button background color",
+      "default": "#c79b6b"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_text_color",
+      "label": "Button text color",
+      "default": "#14110e"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button (White / Bordered)"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary button text",
+      "default": "SPEAK TO OUR CONCIERGE"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_url",
+      "label": "Secondary button URL"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_bg",
+      "label": "Button background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_text_color",
+      "label": "Button text color",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_border_color",
+      "label": "Button border color",
+      "default": "#14110e"
+    },
+    {
+      "type": "header",
+      "content": "Dark Benefits Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_dark_bar",
+      "label": "Show bottom dark benefits bar",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "dark_bar_bg",
+      "label": "Dark bar background",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "dark_bar_text_color",
+      "label": "Dark bar text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dark_bar_accent_color",
+      "label": "Dark bar icon color",
+      "default": "#c79b6b"
+    },
+    {
+      "type": "range",
+      "id": "dark_bar_padding_y",
+      "label": "Dark bar vertical padding",
+      "min": 16,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "CTA Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "CTA top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 92
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "CTA bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mini_benefit",
+      "name": "Mini Benefit (CTA Row)",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Delivery Truck" },
+            { "value": "return", "label": "30-Day Return / Box" },
+            { "value": "shield", "label": "Shield / Warranty" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon (Image/PNG)"
+        },
+        {
+          "type": "html",
+          "id": "custom_svg",
+          "label": "Custom SVG Icon Code"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit text",
+          "default": "Free White Glove Delivery"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_divider",
+          "label": "Show divider line after",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "bottom_benefit",
+      "name": "Dark Bar Benefit",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "home_trial", "label": "House / Home Trial" },
+            { "value": "white_glove", "label": "White Glove Delivery / Truck" },
+            { "value": "welcome_gift", "label": "Welcome Gift / Ribbon Box" },
+            { "value": "warranty", "label": "10-Year Warranty / Shield" }
+          ],
+          "default": "home_trial"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon (Image/PNG)"
+        },
+        {
+          "type": "html",
+          "id": "custom_svg",
+          "label": "Custom SVG Icon Code"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "30-Day"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Home Trial"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer Home CTA",
+      "settings": {
+        "heading_primary": "Ready to see it",
+        "heading_accent": "in your home?",
+        "description": "30 days. If it’s not right, we collect it and refund you completely. No questions asked.",
+        "primary_button_text": "ORDER THE TABLE — FROM $3,200",
+        "secondary_button_text": "SPEAK TO OUR CONCIERGE",
+        "enable_dark_bar": true
+      },
+      "blocks": [
+        {
+          "type": "mini_benefit",
+          "settings": {
+            "icon": "truck",
+            "text": "Free White Glove Delivery",
+            "show_divider": true
+          }
+        },
+        {
+          "type": "mini_benefit",
+          "settings": {
+            "icon": "return",
+            "text": "30-day return",
+            "show_divider": true
+          }
+        },
+        {
+          "type": "mini_benefit",
+          "settings": {
+            "icon": "shield",
+            "text": "10-year warranty",
+            "show_divider": false
+          }
+        },
+        {
+          "type": "bottom_benefit",
+          "settings": {
+            "icon": "home_trial",
+            "title": "30-Day",
+            "subtitle": "Home Trial"
+          }
+        },
+        {
+          "type": "bottom_benefit",
+          "settings": {
+            "icon": "white_glove",
+            "title": "White",
+            "subtitle": "Glove delivery"
+          }
+        },
+        {
+          "type": "bottom_benefit",
+          "settings": {
+            "icon": "welcome_gift",
+            "title": "Warm",
+            "subtitle": "Welcome Gift"
+          }
+        },
+        {
+          "type": "bottom_benefit",
+          "settings": {
+            "icon": "warranty",
+            "title": "10-Year",
+            "subtitle": "Warranty"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

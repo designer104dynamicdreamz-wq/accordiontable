@@ -65,8 +65,9 @@
         "heading": "The table that grows with",
         "heading_accent": "every gathering.",
         "subheading": "<p>Beautifully crafted expandable furniture designed to adapt effortlessly from everyday dining to unforgettable celebrations.</p>",
-        "text_color": "#F8F4EE",
-        "accent_color": "#C79B6B",
+        "text_color": "#f8f4ee",
+        "subheading_color": "#ffffff",
+        "accent_color": "#c79b6b",
         "dark_color": "#14110e"
       }
     },
@@ -98,10 +99,490 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "icon_text_AgHHLJ": {
+      "type": "icon-text",
+      "blocks": {
+        "item_cJgR9N": {
+          "type": "item",
+          "settings": {
+            "icon": "oak",
+            "custom_icon": "shopify://shop_images/noun-users-1382056_2.svg",
+            "custom_svg": "",
+            "title": "12 Guests",
+            "description": "<p>Seats up to 12 comfortably</p>",
+            "link": "",
+            "link_label": "",
+            "open_in_new_tab": false
+          }
+        },
+        "item_TBPFzJ": {
+          "type": "item",
+          "settings": {
+            "icon": "table",
+            "custom_icon": "shopify://shop_images/noun-timer-619331_1.svg",
+            "custom_svg": "",
+            "title": "5 Seconds",
+            "description": "<p>Expands effortlessly</p>",
+            "link": "",
+            "link_label": "",
+            "open_in_new_tab": false
+          }
+        },
+        "item_cNj6Qn": {
+          "type": "item",
+          "settings": {
+            "icon": "tools",
+            "custom_icon": "shopify://shop_images/noun-shield-3204470_1.svg",
+            "custom_svg": "",
+            "title": "10-Year Warranty",
+            "description": "<p>Built to last generations</p>",
+            "link": "",
+            "link_label": "",
+            "open_in_new_tab": false
+          }
+        },
+        "item_3DJhwp": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "custom_icon": "shopify://shop_images/noun-home-1332727_1.svg",
+            "custom_svg": "",
+            "title": "1000+ Homes",
+            "description": "<p>Trusted across Australia</p>",
+            "link": "",
+            "link_label": "",
+            "open_in_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "item_cJgR9N",
+        "item_TBPFzJ",
+        "item_cNj6Qn",
+        "item_3DJhwp"
+      ],
+      "name": "Icon + Text",
+      "settings": {
+        "section_layout": "grid",
+        "badge_text": "",
+        "heading": "",
+        "heading_accent": "",
+        "subheading": "",
+        "header_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_open_in_new_tab": false,
+        "columns_desktop": "4",
+        "columns_tablet": "2",
+        "mobile_layout": "1-col",
+        "card_style": "clean",
+        "icon_position": "left",
+        "text_alignment": "left",
+        "title_font": "sans",
+        "icon_shape": "plain",
+        "icon_size": 46,
+        "icon_container_size": 56,
+        "border_radius": 0,
+        "background_color": "#f6f3ee",
+        "text_color": "#14110e",
+        "subtext_color": "#14110e",
+        "accent_color": "#c79b6b",
+        "dark_color": "#14110e",
+        "card_background_color": "#f6f3ee",
+        "border_color": "#e5dfd5",
+        "icon_bg_color": "#f1e9dd",
+        "column_gap_desktop": 32,
+        "column_gap_mobile": 20,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "extends_table_NzRTwk": {
+      "type": "extends-table",
+      "blocks": {
+        "spec_7Rrhy8": {
+          "type": "spec",
+          "settings": {
+            "label": "Built to last generations",
+            "value": "180 cm / 72\""
+          }
+        },
+        "spec_pDNxnf": {
+          "type": "spec",
+          "settings": {
+            "label": "Maximum extended",
+            "value": "240 cm / 95\""
+          }
+        },
+        "spec_CwQk9g": {
+          "type": "spec",
+          "settings": {
+            "label": "Seats at full extension",
+            "value": "12 people"
+          }
+        },
+        "spec_RGG8gw": {
+          "type": "spec",
+          "settings": {
+            "label": "Wood species",
+            "value": "European Oak"
+          }
+        },
+        "spec_VeKWac": {
+          "type": "spec",
+          "settings": {
+            "label": "Mechanism",
+            "value": "Aerospace aluminium"
+          }
+        }
+      },
+      "block_order": [
+        "spec_7Rrhy8",
+        "spec_pDNxnf",
+        "spec_CwQk9g",
+        "spec_RGG8gw",
+        "spec_VeKWac"
+      ],
+      "name": "Extends Table",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/6185ba3c95e1404f8fa41e9d4c927b39_1.png",
+        "video": "shopify://files/videos/0ceec46bef444d23adc5da9e7c576b14.mp4",
+        "video_url": "",
+        "video_alt": "Accordion table extension demonstration",
+        "video_autoplay": true,
+        "video_loop": true,
+        "video_muted": true,
+        "video_controls": false,
+        "image_position": "left",
+        "media_aspect_ratio": "1 / 1",
+        "media_aspect_ratio_mobile": "4 / 3",
+        "heading": "Extends in under",
+        "heading_accent": "ten seconds.",
+        "description": "<p>Unlock the wheel beneath the table. Pull to your desired length — the accordion mechanism means you stop at any point between 180 cm and 240 cm. Re-lock. Done. One person, no tools, no removed leaves to store.</p>",
+        "button_label": "",
+        "button_link": "",
+        "open_in_new_tab": false,
+        "background_color": "#ffffff",
+        "text_color": "#14110e",
+        "accent_color": "#c79b6b",
+        "description_color": "#14110e",
+        "spec_label_color": "#14110e",
+        "spec_value_color": "#14110e",
+        "border_color": "#eeeeee",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "in_real_homes_hBPMyJ": {
+      "type": "in-real-homes",
+      "blocks": {
+        "card_BbMFrc": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/68c58cf454ce35552935d9c1ee93f0bdcf615d28.png",
+            "location": "ZAGREB, CROATIA",
+            "quote": "“Sunday dinner for ten — extended in moments.”",
+            "card_link": "shopify://products/selling-plans-ski-wax",
+            "enable_arrow": true,
+            "overlay_opacity": 60,
+            "custom_text_color": "#f6f3ee"
+          }
+        },
+        "card_CCFCX8": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/b311854d30caa4f8355a61625e8e770988bafa76.png",
+            "location": "BOSTON, MA",
+            "quote": "“We use it every day — compact for breakfast, full for dinner parties.”",
+            "card_link": "shopify://products/selling-plans-ski-wax",
+            "enable_arrow": true,
+            "overlay_opacity": 10,
+            "custom_text_color": "#f6f3ee"
+          }
+        },
+        "card_ktftYb": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/0d611fc9ca8688dac8da51bd2e034521c678cbb3.png",
+            "location": "LONDON, UK",
+            "quote": "“A city apartment that seats twelve when it needs to.”",
+            "card_link": "shopify://products/the-3p-fulfilled-snowboard",
+            "enable_arrow": true,
+            "overlay_opacity": 60,
+            "custom_text_color": "#f6f3ee"
+          }
+        }
+      },
+      "block_order": [
+        "card_BbMFrc",
+        "card_CCFCX8",
+        "card_ktftYb"
+      ],
+      "name": "In Real Homes",
+      "settings": {
+        "eyebrow": "IN REAL HOMES",
+        "heading": "At the table.",
+        "description": "Share your table — we'll feature the best each month.",
+        "button_text": "SHARE YOUR GATHERING",
+        "button_url": "",
+        "enable_award": true,
+        "award_label": "BIG SEE PRODUCT DESIGN AWARD",
+        "award_title": "WINNER 2025 — SOUTHEAST EUROPE",
+        "award_bg_color": "#f6f3ee",
+        "award_text_color": "#14110e",
+        "background_color": "#f6f3ee",
+        "text_color": "#14110e",
+        "accent_color": "#c79b6b",
+        "description_color": "#5c564f",
+        "container_width": 1320,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "why_accordion_EALRBW": {
+      "type": "why-accordion",
+      "blocks": {
+        "item_zGnMJp": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "custom_icon": "shopify://shop_images/Frame.svg",
+            "custom_svg": "",
+            "number": "01",
+            "title": "Solid European Oak — no veneers",
+            "description": "<p>Hand-selected from Croatian forests. Dense, naturally beautiful, built to last decades. Layered lamella construction distributes weight evenly at every length.</p>"
+          }
+        },
+        "item_Kn7tUk": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "custom_icon": "shopify://shop_images/Frame_1.svg",
+            "custom_svg": "",
+            "number": "02",
+            "title": "One person. No leaves to store.",
+            "description": "<p>Hand-selected from Croatian forests. Dense, naturally beautiful, built to last decades. Layered lamella construction distributes weight evenly at every length.</p>"
+          }
+        },
+        "item_6dt6QE": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "custom_icon": "shopify://shop_images/noun-shield-3204470_1_1.svg",
+            "custom_svg": "",
+            "number": "03",
+            "title": "Solid European Oak — no veneers",
+            "description": "<p>Hand-selected from Croatian forests. Dense, naturally beautiful, built to last decades. Layered lamella construction distributes weight evenly at every length.</p>"
+          }
+        },
+        "item_fgw4Lp": {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "custom_icon": "shopify://shop_images/Frame_2.svg",
+            "custom_svg": "",
+            "number": "04",
+            "title": "Spill and scratch resistant",
+            "description": "<p>Hardened natural oil finish protects against everyday wear, wine, and scratches while preserving the warmth of the wood grain beneath.</p>"
+          }
+        },
+        "item_fckpVC": {
+          "type": "item",
+          "settings": {
+            "icon": "workshop",
+            "custom_icon": "shopify://shop_images/Frame_3.svg",
+            "custom_svg": "",
+            "number": "05",
+            "title": "3rd-generation family workshop",
+            "description": "<p>Made in Croatia. Over 40 hours of craftsmanship per table. Sustainably sourced local oak, minimal transport, knowledge passed down across three generations.</p>"
+          }
+        },
+        "item_YW38DP": {
+          "type": "item",
+          "settings": {
+            "icon": "star",
+            "custom_icon": "shopify://shop_images/Frame_4.svg",
+            "custom_svg": "",
+            "number": "06",
+            "title": "10-year warranty, 30-day returns.",
+            "description": "<p>If it's not right, we collect the table and refund you completely. No questions asked. The warranty covers the mechanism, the finish, and the joinery.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_zGnMJp",
+        "item_Kn7tUk",
+        "item_6dt6QE",
+        "item_fgw4Lp",
+        "item_fckpVC",
+        "item_YW38DP"
+      ],
+      "name": "Why Accordion",
+      "settings": {
+        "badge_text": "WHY ACCORDION",
+        "heading": "Engineered for",
+        "heading_accent": "real life.",
+        "subheading": "",
+        "columns_desktop": "3",
+        "show_numbers": true,
+        "background_color": "#ffffff",
+        "text_color": "#14110e",
+        "accent_color": "#c79b6b",
+        "description_color": "#5c564f",
+        "card_background": "#ffffff",
+        "border_color": "#ece7e1",
+        "border_hover_color": "#c79b6b",
+        "padding_top": 80,
+        "padding_bottom": 0
+      }
+    },
+    "faq_promise_iCFyHb": {
+      "type": "faq-promise",
+      "blocks": {
+        "faq_QJacXc": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>We ship within 3–5 weeks from our workshop in Croatia. White-glove delivery to your room of choice, assembly included.</p>",
+            "open_default": true
+          }
+        },
+        "faq_H7zmxi": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it doesn't fit my space?",
+            "answer": "<p>Our 30-day trial gives you ample time to live with the table. If the dimensions or fit aren't ideal, we will arrange a complimentary collection and complete refund.</p>",
+            "open_default": false
+          }
+        },
+        "faq_ApQTzW": {
+          "type": "faq",
+          "settings": {
+            "question": "What wood finish options are there?",
+            "answer": "<p>We offer Natural European Oak, Smoked Oak, and Ebonized Dark Oak finishes, all sealed with an ultra-matte, water-resistant protective treatment.</p>",
+            "open_default": false
+          }
+        },
+        "faq_ir3rcQ": {
+          "type": "faq",
+          "settings": {
+            "question": "Can one person really move it?",
+            "answer": "<p>Yes. The patented internal counterweight and ball-bearing rail system allows effortless extension from either end with one hand.</p>",
+            "open_default": false
+          }
+        },
+        "faq_TiUgzk": {
+          "type": "faq",
+          "settings": {
+            "question": "Is the mechanism durable long-term?",
+            "answer": "<p>Precision-milled aerospace aluminum and steel tracks are tested to over 20,000 extension cycles and backed by our full 10-year warranty.</p>",
+            "open_default": false
+          }
+        },
+        "feature_rndJcb": {
+          "type": "feature",
+          "settings": {
+            "text": "Free white-glove delivery"
+          }
+        },
+        "feature_kYht7c": {
+          "type": "feature",
+          "settings": {
+            "text": "30-day home trial"
+          }
+        },
+        "feature_iibqWd": {
+          "type": "feature",
+          "settings": {
+            "text": "Full refund, no questions asked"
+          }
+        },
+        "feature_R3Yf3g": {
+          "type": "feature",
+          "settings": {
+            "text": "10-year mechanism warranty"
+          }
+        }
+      },
+      "block_order": [
+        "faq_QJacXc",
+        "faq_H7zmxi",
+        "faq_ApQTzW",
+        "faq_ir3rcQ",
+        "faq_TiUgzk",
+        "feature_rndJcb",
+        "feature_kYht7c",
+        "feature_iibqWd",
+        "feature_R3Yf3g"
+      ],
+      "name": "FAQ + 30-Day Promise",
+      "settings": {
+        "eyebrow": "BEFORE YOU DECIDE",
+        "heading_line_1": "Questions worth",
+        "heading_accent": "asking.",
+        "enable_promise_card": true,
+        "badge_number": "30",
+        "badge_label": "Days",
+        "card_heading_line_1": "The 30-day",
+        "card_heading_accent": "promise.",
+        "card_description": "We believe this is the best extending dining table available. But your home is the only real test. Try it for 30 days. If it's not exactly right, we collect it and refund you completely.",
+        "button_text": "ORDER THE TABLE — FROM $3,200",
+        "button_url": "",
+        "secondary_text": "OR SPEAK WITH OUR CONCIERGE TEAM FIRST",
+        "secondary_url": "",
+        "background_color": "#ffffff",
+        "text_color": "#14110e",
+        "accent_color": "#c79b6b",
+        "description_color": "#5c564f",
+        "card_bg_color": "#faf8f6",
+        "card_text_color": "#14110e",
+        "button_bg_color": "#c79b6b",
+        "button_text_color": "#14110e",
+        "border_color": "#14110e17",
+        "container_width": 1320,
+        "column_gap": 64,
+        "card_padding": 48,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "journal_blog_posts_FFc8cf": {
+      "type": "journal-blog-posts",
+      "name": "Journal Blog Posts",
+      "settings": {
+        "eyebrow": "JOURNAL",
+        "heading": "At the table.",
+        "view_all_text": "VIEW ALL STORIES",
+        "view_all_url": "",
+        "blog": "news",
+        "post_limit": 4,
+        "show_image": true,
+        "show_category": true,
+        "show_date": true,
+        "show_excerpt": true,
+        "excerpt_limit": 80,
+        "background_color": "#ffffff",
+        "text_color": "#14110e",
+        "accent_color": "#c79b6b",
+        "meta_color": "#8c867f",
+        "excerpt_color": "#5c564f",
+        "container_width": 1380,
+        "grid_gap": 24,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
     }
   },
   "order": [
     "hero_banner_nav_CWQnEk",
-    "featured_collection"
+    "featured_collection",
+    "icon_text_AgHHLJ",
+    "extends_table_NzRTwk",
+    "in_real_homes_hBPMyJ",
+    "why_accordion_EALRBW",
+    "faq_promise_iCFyHb",
+    "journal_blog_posts_FFc8cf"
   ]
 }

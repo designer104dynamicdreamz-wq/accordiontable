@@ -1,0 +1,247 @@
+/* ==========================================================================
+   Why Accordion Section — Scoped Styles
+   Exact recreation of Figma Node 4-2035
+   ========================================================================== */
+
+.why-acc {
+  --why-bg: #ffffff;
+  --why-text: #14110e;
+  --why-accent: #c79b6b;
+  --why-desc: #5c564f;
+  --why-card-bg: #ffffff;
+  --why-border: #ece7e1;
+  --why-border-hover: #c79b6b;
+  --why-gap: 24px;
+  --why-icon-size: 40px;
+
+  position: relative;
+  width: 100%;
+  background-color: var(--why-bg);
+  color: var(--why-text);
+  box-sizing: border-box;
+}
+
+.why-acc * {
+  box-sizing: border-box;
+}
+
+/* ---------- Header ---------- */
+
+.why-acc__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 56px;
+}
+
+.why-acc__badge {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--why-accent);
+  margin-bottom: 14px;
+}
+
+.why-acc__heading {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(34px, 4.5vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--why-text);
+}
+
+.why-acc__heading-accent {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--why-accent);
+}
+
+.why-acc__subheading {
+  margin-top: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--why-desc);
+}
+
+.why-acc__subheading p {
+  margin: 0;
+}
+
+/* ---------- Cards Grid ---------- */
+
+.why-acc__grid {
+  display: grid;
+  gap: var(--why-gap);
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.why-acc__grid--3-col {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.why-acc__grid--2-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.why-acc__grid--4-col {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ---------- Card Item ---------- */
+
+.why-acc__card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--why-card-bg);
+  border: 1px solid rgba(22, 25, 40, 0.1);
+  padding: 20px;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Top Row: Icon on Left, Number on Right */
+
+.why-acc__top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(20 17 14 / 10%);
+}
+
+.why-acc__icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--why-accent);
+  flex-shrink: 0;
+}
+
+.why-acc__icon-wrap svg {
+  width: var(--why-icon-size);
+  height: var(--why-icon-size);
+  display: block;
+  stroke: currentColor;
+}
+
+.why-acc__icon-wrap img {
+  width: var(--why-icon-size);
+  height: var(--why-icon-size);
+  object-fit: contain;
+  display: block;
+}
+
+.why-acc__number {
+  color: var(--why-accent);
+  font-family: Playfair Display;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Content */
+
+.why-acc__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.why-acc__title {
+  margin: 0 0 16px;
+  color: var(--why-text);
+  font-family: Cormorant Garamond;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0%;
+}
+
+.why-acc__description {
+  margin: 0;
+  color: rgba(20, 17, 14, 0.8);
+  font-family: DM Sans;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 26px;
+  letter-spacing: 0;
+}
+
+.why-acc__description p {
+  margin: 0;
+}
+
+.why-acc__description p+p {
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   Tablet & Mobile Responsive
+   ========================================================================== */
+
+@media screen and (max-width: 989px) {
+  .why-acc {
+    --why-gap: 20px;
+  }
+
+  .why-acc__header {
+    margin-bottom: 40px;
+  }
+
+  .why-acc__grid--3-col,
+  .why-acc__grid--4-col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .why-acc {
+    --why-gap: 16px;
+    --why-icon-size: 26px;
+  }
+
+  .why-acc__header {
+    margin-bottom: 32px;
+  }
+
+  .why-acc__heading {
+    font-size: clamp(28px, 7.5vw, 36px);
+  }
+
+  .why-acc__grid--3-col,
+  .why-acc__grid--2-col,
+  .why-acc__grid--4-col {
+    grid-template-columns: 1fr;
+  }
+
+  .why-acc__card {
+    padding: 24px 20px;
+  }
+
+  .why-acc__top-row {
+    margin-bottom: 18px;
+  }
+
+  .why-acc__title {
+    font-size: 19px;
+  }
+
+  .why-acc__description {
+    font-size: 13.5px;
+  }
+}

@@ -1,0 +1,448 @@
+{{ 'extends-table.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign section_id = section.id
+  assign s = section.settings
+  assign image_position = s.image_position | default: 'left'
+  assign media_type = s.media_type | default: 'image'
+  assign aspect_ratio = s.media_aspect_ratio | default: '16 / 11'
+  assign aspect_ratio_mobile = s.media_aspect_ratio_mobile | default: '4 / 3'
+-%}
+
+<section
+  class="ext-table ext-table--{{ section_id }}"
+  id="ext-table-{{ section_id }}"
+  data-section-id="{{ section_id }}"
+  style="
+    --ext-bg: {{ s.background_color | default: '#ffffff' }};
+    --ext-text: {{ s.text_color | default: '#14110e' }};
+    --ext-accent: {{ s.accent_color | default: '#c79b6b' }};
+    --ext-desc: {{ s.description_color | default: '#5c564f' }};
+    --ext-spec-label: {{ s.spec_label_color | default: '#5c564f' }};
+    --ext-spec-val: {{ s.spec_value_color | default: '#14110e' }};
+    --ext-border: {{ s.border_color | default: '#ece7e1' }};
+    --ext-media-aspect: {{ aspect_ratio }};
+    --ext-media-aspect-mobile: {{ aspect_ratio_mobile }};
+    padding-top: {{ s.padding_top | default: 60 }}px;
+    padding-bottom: {{ s.padding_bottom | default: 60 }}px;
+  "
+>
+  <div class="page-width">
+    <div class="ext-table__grid ext-table__grid--image-{{ image_position }}{% if s.image_mobile != blank %} ext-table__has-mobile-image{% endif %}">
+      
+      <!-- Media Column -->
+      <div class="ext-table__media-col">
+        <div class="ext-table__media-wrapper">
+          {%- if media_type == 'video' and s.video != blank -%}
+            {{
+              s.video
+              | video_tag:
+                autoplay: s.video_autoplay,
+                loop: s.video_loop,
+                muted: s.video_muted,
+                controls: s.video_controls,
+                playsinline: true
+            }}
+          {%- elsif media_type == 'video_url' and s.video_url != blank -%}
+            {%- if s.video_url.type == 'youtube' -%}
+              <iframe
+                src="https://www.youtube.com/embed/{{ s.video_url.id }}?enablejsapi=1&autoplay={% if s.video_autoplay %}1{% else %}0{% endif %}&mute={% if s.video_muted %}1{% else %}0{% endif %}&loop={% if s.video_loop %}1{% else %}0{% endif %}&controls={% if s.video_controls %}1{% else %}0{% endif %}&playlist={{ s.video_url.id }}"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                title="{{ s.video_alt | default: s.heading | default: 'Accordion table video' | escape }}"
+              ></iframe>
+            {%- elsif s.video_url.type == 'vimeo' -%}
+              <iframe
+                src="https://player.vimeo.com/video/{{ s.video_url.id }}?autoplay={% if s.video_autoplay %}1{% else %}0{% endif %}&muted={% if s.video_muted %}1{% else %}0{% endif %}&loop={% if s.video_loop %}1{% else %}0{% endif %}&controls={% if s.video_controls %}1{% else %}0{% endif %}"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                title="{{ s.video_alt | default: s.heading | default: 'Accordion table video' | escape }}"
+              ></iframe>
+            {%- endif -%}
+          {%- elsif s.image != blank -%}
+            <div class="ext-table__media--desktop">
+              {{
+                s.image
+                | image_url: width: 1400
+                | image_tag:
+                  loading: 'lazy',
+                  sizes: '(min-width: 990px) 50vw, 100vw',
+                  widths: '480, 750, 1100, 1400',
+                  alt: s.image.alt | default: s.heading | default: 'Accordion table extending'
+              }}
+            </div>
+            {%- if s.image_mobile != blank -%}
+              <div class="ext-table__media--mobile">
+                {{
+                  s.image_mobile
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '100vw',
+                    widths: '360, 480, 750, 800',
+                    alt: s.image_mobile.alt | default: s.heading | default: 'Accordion table extending'
+                }}
+              </div>
+            {%- endif -%}
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Content Column -->
+      <div class="ext-table__content-col">
+        {%- if s.heading != blank or s.heading_accent != blank -%}
+          <h2 class="ext-table__heading">
+            {%- if s.heading != blank -%}
+              <span class="ext-table__heading-primary">{{ s.heading }}</span>
+            {%- endif -%}
+            {%- if s.heading_accent != blank -%}
+              <span class="ext-table__heading-accent">{{ s.heading_accent }}</span>
+            {%- endif -%}
+          </h2>
+        {%- endif -%}
+
+        {%- if s.description != blank -%}
+          <div class="ext-table__description">
+            {{ s.description }}
+          </div>
+        {%- endif -%}
+
+        <!-- Specifications Table -->
+        {%- if section.blocks.size > 0 -%}
+          <div class="ext-table__specs">
+            {%- for block in section.blocks -%}
+              {%- assign b = block.settings -%}
+              {%- if b.label != blank or b.value != blank -%}
+                <div class="ext-table__spec-row" {{ block.shopify_attributes }}>
+                  {%- if b.label != blank -%}
+                    <span class="ext-table__spec-label">{{ b.label }}</span>
+                  {%- endif -%}
+                  {%- if b.value != blank -%}
+                    <span class="ext-table__spec-value">{{ b.value }}</span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <!-- Optional CTA Button -->
+        {%- if s.button_label != blank and s.button_link != blank -%}
+          <div class="ext-table__action">
+            <a
+              href="{{ s.button_link }}"
+              class="ext-table__btn"
+              {% if s.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+            >
+              <span>{{ s.button_label }}</span>
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Extends Table",
+  "tag": "section",
+  "class": "ext-table-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media Type & Selection"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image (Desktop & Mobile)" },
+        { "value": "video", "label": "Shopify-hosted Video" },
+        { "value": "video_url", "label": "External Video URL (YouTube / Vimeo)" }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "header",
+      "content": "Image Options"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Video Options"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Shopify-hosted video (MP4/WebM)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "External video URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "text",
+      "id": "video_alt",
+      "label": "Video accessibility title",
+      "default": "Accordion table extension demonstration"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_muted",
+      "label": "Mute video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_controls",
+      "label": "Show player controls",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Media Layout & Aspect Ratio"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Desktop media position",
+      "options": [
+        { "value": "left", "label": "Media on Left, Content on Right" },
+        { "value": "right", "label": "Media on Right, Content on Left" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "media_aspect_ratio",
+      "label": "Desktop aspect ratio",
+      "options": [
+        { "value": "16 / 11", "label": "16:11 (Figma default)" },
+        { "value": "16 / 9", "label": "16:9 (Widescreen)" },
+        { "value": "4 / 3", "label": "4:3 (Traditional)" },
+        { "value": "1 / 1", "label": "1:1 (Square)" }
+      ],
+      "default": "16 / 11"
+    },
+    {
+      "type": "select",
+      "id": "media_aspect_ratio_mobile",
+      "label": "Mobile aspect ratio",
+      "options": [
+        { "value": "4 / 3", "label": "4:3 (Recommended for mobile)" },
+        { "value": "16 / 9", "label": "16:9 (Landscape)" },
+        { "value": "1 / 1", "label": "1:1 (Square)" }
+      ],
+      "default": "4 / 3"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading primary text",
+      "default": "Extends in under"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent text (italic)",
+      "default": "ten seconds."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Unlock the wheel beneath the table. Pull to your desired length — the accordion mechanism means you stop at any point between 180 cm and 240 cm. Re-lock. Done. One person, no tools, no removed leaves to store.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Button (Optional)"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading text color",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent text color (gold/italic)",
+      "default": "#c79b6b"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description text color",
+      "default": "#5c564f"
+    },
+    {
+      "type": "color",
+      "id": "spec_label_color",
+      "label": "Specification label color",
+      "default": "#5c564f"
+    },
+    {
+      "type": "color",
+      "id": "spec_value_color",
+      "label": "Specification value color",
+      "default": "#14110e"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Divider line color",
+      "default": "#ece7e1"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Specification Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Spec label",
+          "default": "Built to last generations"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Spec value",
+          "default": "180 cm / 72\""
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Extends Table",
+      "settings": {
+        "media_type": "image",
+        "heading": "Extends in under",
+        "heading_accent": "ten seconds.",
+        "description": "<p>Unlock the wheel beneath the table. Pull to your desired length — the accordion mechanism means you stop at any point between 180 cm and 240 cm. Re-lock. Done. One person, no tools, no removed leaves to store.</p>"
+      },
+      "blocks": [
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Built to last generations",
+            "value": "180 cm / 72\""
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Maximum extended",
+            "value": "240 cm / 95\""
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Seats at full extension",
+            "value": "12 people"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Wood species",
+            "value": "European Oak"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Mechanism",
+            "value": "Aerospace aluminium"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
